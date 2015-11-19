@@ -1,0 +1,10 @@
+passvault_user_login:
+    path: /user/login
+    defaults:
+        _controller: PassVaultUserBundle:User:login
+
+passvault_user_check:
+    path: /user/check
+
+passvault_user_logout:
+    path: /user/logout

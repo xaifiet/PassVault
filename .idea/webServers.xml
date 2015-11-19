@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="f62db40d-f0e8-40f2-9aff-d4c618ceedda" name="Server" url="http://xaifiet.com">
+        <fileTransfer host="xaifiet.com" port="22" rootFolder="/var/www/dev" accessType="SFTP" password="dfe9dfc8dfc5dfdfdfc2dfd3dfcbdf9a" username="www-data">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

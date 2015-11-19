@@ -1,0 +1,3 @@
+pass_vault_pass_homepage:
+    path:     /
+    defaults: { _controller: PassVaultPassBundle:Pass:index }

@@ -1,0 +1,4 @@
+services:
+#    pass_vault_user.example:
+#        class: PassVault\UserBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

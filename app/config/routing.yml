@@ -1,3 +1,7 @@
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
+pass_vault_pass:
+    resource: "@PassVaultPassBundle/Resources/config/routing.yml"
+    prefix:   /
+
+pass_vault_user:
+    resource: "@PassVaultUserBundle/Resources/config/routing.yml"
+    prefix:   /
