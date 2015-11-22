@@ -1,0 +1,7 @@
+organization:
+  form:
+    name:
+      label: Name
+form:
+  name:
+    label: Name

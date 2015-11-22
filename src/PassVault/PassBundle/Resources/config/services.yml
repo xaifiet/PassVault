@@ -1,4 +1,28 @@
 services:
-#    pass_vault_pass.example:
-#        class: PassVault\PassBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+
+    passvault.twig.class_extension:
+        class: PassVault\PassBundle\Twig\ClassExtension
+        tags:
+            - { name: twig.extension }
+
+    passvault.form_type.organization_type:
+        class: PassVault\PassBundle\Form\Type\OrganizationType
+        arguments:
+            - @service_container
+        tags:
+            - { name: form.type, alias: organization }
+
+    passvault.form_type.folder_type:
+        class: PassVault\PassBundle\Form\Type\FolderType
+        arguments:
+            - @service_container
+        tags:
+            - { name: form.type, alias: folder }
+
+    passvault.form_type.password_type:
+        class: PassVault\PassBundle\Form\Type\PassvaultType
+        arguments:
+            - @service_container
+        tags:
+            - { name: form.type, alias: passvault }
+

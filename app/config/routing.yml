@@ -5,3 +5,7 @@ pass_vault_pass:
 pass_vault_user:
     resource: "@PassVaultUserBundle/Resources/config/routing.yml"
     prefix:   /
+
+entity_modal:
+    resource: "@EntityModalBundle/Resources/config/routing.yml"
+    prefix:   /

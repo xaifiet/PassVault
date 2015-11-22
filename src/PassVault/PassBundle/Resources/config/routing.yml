@@ -1,3 +1,55 @@
-pass_vault_pass_homepage:
+#
+# Homepage
+#
+
+passvault_homepage:
     path:     /
-    defaults: { _controller: PassVaultPassBundle:Pass:index }
+    defaults: { _controller: PassVaultPassBundle:Node:index }
+
+
+#
+# Node
+#
+
+passvault_node_view:
+    path:     /node/view/{id}
+    defaults: { _controller: PassVaultPassBundle:Node:index }
+
+
+#
+# Organization
+#
+
+passvault_organization_add:
+    path:     /organization/add
+    defaults: { _controller: PassVaultPassBundle:Organization:add }
+
+passvault_organization_edit:
+    path:     /organization/edit/{id}
+    defaults: { _controller: PassVaultPassBundle:Organization:edit }
+
+
+#
+# Folder
+#
+
+passvault_folder_add:
+    path:     /folder/add
+    defaults: { _controller: PassVaultPassBundle:Folder:add }
+
+passvault_folder_edit:
+    path:     /folder/edit/{id}
+    defaults: { _controller: PassVaultPassBundle:Folder:edit }
+
+
+#
+# Password
+#
+
+passvault_password_add:
+    path:     /password/add
+    defaults: { _controller: PassVaultPassBundle:Password:add }
+
+passvault_password_edit:
+    path:     /password/edit/{id}
+    defaults: { _controller: PassVaultPassBundle:Password:edit }

@@ -1,0 +1,7 @@
+oranization:
+  form:
+    name:
+      label: Nom
+form:
+  name:
+    label: Test

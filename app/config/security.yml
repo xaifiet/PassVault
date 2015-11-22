@@ -17,12 +17,12 @@ security:
 
     firewalls:
         secured_area:
-            context: passvault
             pattern: ^/
             form_login:
                 check_path: /user/check
                 login_path: /user/login
                 provider: passvault_provider
+                default_target_path: /
                 require_previous_session: false
             logout:
                 path:   /user/logout

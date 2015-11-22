@@ -1,0 +1,56 @@
+{% extends ':Layout:base.html.twig' %}
+
+{% block body %}
+    {{ form_start(form) }}
+    <div class="wrapper">
+        {% include ':Layout:header.html.twig' %}
+        {% include ':Layout:sidebar.html.twig' %}
+        <div class="content-wrapper">
+
+            <section class="content-header">
+                <h1>Passwords</h1>
+            </section>
+            <section class="content">
+                <div class="col-xs-4">
+                    <div class="box">
+                        <div class="box-body table-responsive no-padding">
+                            <table class="table table-bordered" data-bind="ready{treegrid()}">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {#                                {% for treemedia in getModuleTree('media') %}
+                                                                    <tr class="treegrid-{{ treemedia.id }}{% if treemedia.parent != null %} treegrid-parent-{{ treemedia.parent.id }}{% endif %}{% if media is defined and treemedia == media %} tree-activate{% endif %}" style="display: none;">
+                                                                        <td>
+                                                                            <i class="{{ getIcon('media', treemedia.getInheritanceType()) }}"></i>
+                                                                            <span class="tree-space"><a href="{{ lcmspath('media', treemedia.getInheritanceType(), 'edit', {'id': treemedia.id}) }}">{{ treemedia.name }}</a></span>
+                                                                        </td>
+                                                                    </tr>
+                                                                {% endfor %}#}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-8">
+                    <div class="box">
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Folder Informations</h3>
+                            </div>
+                            <div class="box-body">
+                                {{ form_row(form.name) }}
+                                {{ form_row(form.parent) }}
+                                {{ form_row(form.submit) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

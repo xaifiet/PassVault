@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a5dc85c24a975b9bb707e9bfff47f2f6",
-    "content-hash": "3946ce8109929bc1ee9038f84db49ade",
+    "hash": "22356b691ba908841c705e01352aa298",
+    "content-hash": "5b1beefc75b6c0304d9d98e27a0ec08d",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -1219,6 +1219,35 @@
             "time": "2015-11-12 13:51:40"
         },
         {
+            "name": "maxazan/jquery-treegrid",
+            "version": "0.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/maxazan/jquery-treegrid.git",
+                "reference": "c8ba9e9604620002155d01a947cceffe18d4428c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/maxazan/jquery-treegrid/zipball/c8ba9e9604620002155d01a947cceffe18d4428c",
+                "reference": "c8ba9e9604620002155d01a947cceffe18d4428c",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "jquery treegrid plugin",
+            "homepage": "http://maxazan.github.io/jquery-treegrid",
+            "keywords": [
+                "grid",
+                "jquery",
+                "tree",
+                "treegrid"
+            ],
+            "time": "2015-02-03 14:17:28"
+        },
+        {
             "name": "monolog/monolog",
             "version": "1.17.2",
             "source": {
@@ -1919,12 +1948,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "1565c1196e788a7e75e6115bcfb9967430ef2648"
+                "reference": "94b4076dd2efba9af71f0b18d4ee4b163aa9e0dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/1565c1196e788a7e75e6115bcfb9967430ef2648",
-                "reference": "1565c1196e788a7e75e6115bcfb9967430ef2648",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/94b4076dd2efba9af71f0b18d4ee4b163aa9e0dd",
+                "reference": "94b4076dd2efba9af71f0b18d4ee4b163aa9e0dd",
                 "shasum": ""
             },
             "replace": {
@@ -1962,7 +1991,75 @@
                 "responsive",
                 "web"
             ],
-            "time": "2015-11-13 05:31:27"
+            "time": "2015-11-16 06:08:42"
+        },
+        {
+            "name": "xaifiet/entity-modal",
+            "version": "0.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/xavier-dubreuil/EntityModal.git",
+                "reference": "c0b9ae06ad14f3fbf24b7e9942d479a81775ed16"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/xavier-dubreuil/EntityModal/zipball/c0b9ae06ad14f3fbf24b7e9942d479a81775ed16",
+                "reference": "c0b9ae06ad14f3fbf24b7e9942d479a81775ed16",
+                "shasum": ""
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "EntityModalBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Xavier DUBREUIL",
+                    "email": "xav.dubreuil@gmail.com"
+                }
+            ],
+            "description": "Symfony EntityModalBundle",
+            "keywords": [
+                "form"
+            ],
+            "time": "2015-11-22 12:51:34"
+        },
+        {
+            "name": "xaifiet/jquery-bind",
+            "version": "0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/xavier-dubreuil/jquery-bind.git",
+                "reference": "f954c74a6d757d26480a62fc32ac0e8f56810c52"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/xavier-dubreuil/jquery-bind/zipball/f954c74a6d757d26480a62fc32ac0e8f56810c52",
+                "reference": "f954c74a6d757d26480a62fc32ac0e8f56810c52",
+                "shasum": ""
+            },
+            "type": "component",
+            "extra": {
+                "component": {
+                    "scripts": [
+                        "jquery-bind.js"
+                    ],
+                    "files": [
+                        "jquery-bind.min.js"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Xavier DUBREUIL",
+                    "email": "xav.dubreuil@gmail.com"
+                }
+            ],
+            "description": "jQuery Bind Library",
+            "time": "2015-11-22 01:18:51"
         }
     ],
     "packages-dev": [

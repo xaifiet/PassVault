@@ -22,6 +22,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/incenteev/composer-parameter-handler" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/jdorn/sql-formatter" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/kriswallsmith/assetic" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/maxazan/jquery-treegrid" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/monolog/monolog" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/log" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sensio/distribution-bundle" />
@@ -35,6 +36,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/symfony" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/twig/twig" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/twitter/bootstrap" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/xaifiet/entity-modal" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/xaifiet/jquery-bind" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -73,6 +76,7 @@
           <root url="file://$MODULE_DIR$/vendor/incenteev/composer-parameter-handler" />
           <root url="file://$MODULE_DIR$/vendor/jdorn/sql-formatter" />
           <root url="file://$MODULE_DIR$/vendor/kriswallsmith/assetic" />
+          <root url="file://$MODULE_DIR$/vendor/maxazan/jquery-treegrid" />
           <root url="file://$MODULE_DIR$/vendor/monolog/monolog" />
           <root url="file://$MODULE_DIR$/vendor/psr/log" />
           <root url="file://$MODULE_DIR$/vendor/sensio/distribution-bundle" />
@@ -86,6 +90,8 @@
           <root url="file://$MODULE_DIR$/vendor/symfony/symfony" />
           <root url="file://$MODULE_DIR$/vendor/twig/twig" />
           <root url="file://$MODULE_DIR$/vendor/twitter/bootstrap" />
+          <root url="file://$MODULE_DIR$/vendor/xaifiet/entity-modal" />
+          <root url="file://$MODULE_DIR$/vendor/xaifiet/jquery-bind" />
         </CLASSES>
         <SOURCES>
           <root url="file://$MODULE_DIR$/vendor/almasaeed2010/adminlte" />
@@ -108,6 +114,7 @@
           <root url="file://$MODULE_DIR$/vendor/incenteev/composer-parameter-handler" />
           <root url="file://$MODULE_DIR$/vendor/jdorn/sql-formatter" />
           <root url="file://$MODULE_DIR$/vendor/kriswallsmith/assetic" />
+          <root url="file://$MODULE_DIR$/vendor/maxazan/jquery-treegrid" />
           <root url="file://$MODULE_DIR$/vendor/monolog/monolog" />
           <root url="file://$MODULE_DIR$/vendor/psr/log" />
           <root url="file://$MODULE_DIR$/vendor/sensio/distribution-bundle" />
@@ -121,6 +128,8 @@
           <root url="file://$MODULE_DIR$/vendor/symfony/symfony" />
           <root url="file://$MODULE_DIR$/vendor/twig/twig" />
           <root url="file://$MODULE_DIR$/vendor/twitter/bootstrap" />
+          <root url="file://$MODULE_DIR$/vendor/xaifiet/entity-modal" />
+          <root url="file://$MODULE_DIR$/vendor/xaifiet/jquery-bind" />
         </SOURCES>
       </library>
     </orderEntry>

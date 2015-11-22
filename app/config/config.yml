@@ -35,7 +35,9 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
-
+    form_themes:
+        - ':Form:theme.html.twig'
+        - 'EntityModalBundle:EntityModal:form_theme.html.twig'
 
 assetic:
     debug:          "%kernel.debug%"
@@ -108,13 +110,6 @@ assetic:
                 - '%kernel.root_dir%/../vendor/almasaeed2010/adminlte/dist/css/AdminLTE.css'
                 - '%kernel.root_dir%/../vendor/almasaeed2010/adminlte/dist/css/skins/skin-blue.css'
 
-        summernote_js:
-            inputs:
-                - %kernel.root_dir%/../vendor/summernote/summernote/dist/summernote.js
-        summernote_css:
-            inputs:
-                - '%kernel.root_dir%/../vendor/summernote/summernote/dist/summernote.css'
-
         treegrid_js:
             inputs:
                 - %kernel.root_dir%/../vendor/maxazan/jquery-treegrid/js/jquery.treegrid.js
@@ -123,6 +118,21 @@ assetic:
             inputs:
                 - %kernel.root_dir%/../vendor/maxazan/jquery-treegrid/css/jquery.treegrid.css
 
+        entitymodal_js:
+            inputs:
+                - %kernel.root_dir%/../vendor/xaifiet/entity-modal/Resources/public/js/entity_modal.js
+
+        entitymodal_css:
+            inputs:
+                - %kernel.root_dir%/../vendor/xaifiet/entity-modal/Resources/public/css/entity_modal.css
+
+        jquerybind_js:
+            inputs:
+                - %kernel.root_dir%/../vendor/xaifiet/jquery-bind/jquery-bind.min.js
+
+        passvault_js:
+            inputs:
+                - %kernel.root_dir%/../src/PassVault/PassBundle/Resources/public/js/passvault.js
 
 # Doctrine Configuration
 doctrine:

@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new PassVault\UserBundle\PassVaultUserBundle(),
             new PassVault\PassBundle\PassVaultPassBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new EntityModalBundle\EntityModalBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
