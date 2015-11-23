@@ -8,65 +8,37 @@ use Symfony\Component\HttpFoundation\Request;
 
 class OrganizationController extends Controller
 {
-    public function addAction(Request $request)
+    public function addAction(Request $request, $parent, $nodes)
     {
-        $organization = new Organization();
+        $node = new Organization();
 
-        $form = $this->createForm('organization', $organization, array(
-            'action' => $request->getUri(),
-            'method' => 'POST'
-        ));
-
-        $form->handleRequest($request);
-        $redirect = false;
-
-        if ($form->isValid()) {
-            if ($form->get('submit')->isClicked()) {
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($organization);
-                $em->flush();
-                $redirect = true;
-            }
-        }
-
-        if ($redirect) {
-            return $this->redirectToRoute('passvault_organization_edit', array('id' => $organization->getId()));
-        }
-
-        return $this->render('PassVaultPassBundle:Organization:add.html.twig', array(
-            'form' => $form->createView(),
-            'node' => $organization,
-        ));
+        return $this->viewAction($request, $nodes, $node);
     }
 
-    public function editAction(Request $request, $id)
+    public function viewAction(Request $request, $nodes, $node)
     {
-        $organization = $this->getDoctrine()->getRepository('PassVaultPassBundle:Organization')->find($id);
 
-        $form = $this->createForm('organization', $organization, array(
+        $form = $this->createForm('organization', $node, array(
             'action' => $request->getUri(),
             'method' => 'POST'
         ));
 
         $form->handleRequest($request);
-        $redirect = false;
 
         if ($form->isValid()) {
             if ($form->get('submit')->isClicked()) {
                 $em = $this->getDoctrine()->getManager();
-                $em->persist($organization);
+                $em->persist($node);
                 $em->flush();
-                $redirect = true;
+
+                return $this->redirectToRoute('passvault_node_view', array('id' => $node->getId()));
             }
         }
 
-        if ($redirect) {
-            return $this->redirectToRoute('passvault_organization_edit', array('id' => $organization->getId()));
-        }
-
-        return $this->render('PassVaultPassBundle:Organization:add.html.twig', array(
-            'form' => $form->createView(),
-            'node' => $organization,
+        return $this->render('PassVaultPassBundle:Organization:view.html.twig', array(
+            'nodes' => $nodes,
+            'node' => $node,
+            'form' => $form->createView()
         ));
     }
 

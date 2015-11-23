@@ -1,6 +1,6 @@
 <?php
 
-namespace PassVault\PassBundle\Form\Type;
+namespace PassVault\UserBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -8,10 +8,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\DependencyInjection\Container;
 
 /**
- * Class FolderType
- * @package PassVault\PassBundle\Form\Type
+ * Class TeamType
+ * @package PassVault\UserBundle\Form\Type
  */
-class FolderType extends AbstractType
+class TeamType extends AbstractType
 {
 
     protected $container;
@@ -37,19 +37,7 @@ class FolderType extends AbstractType
     {
 
         $builder->add('name', 'text', array(
-            'label' => 'node.form.name.label',
-        ));
-
-        $builder->add('parent', 'entity_modal', array(
-            'label' => 'node.form.parent.label',
-            'entity_label' => array('name'),
-            'entity_repository' => 'PassVaultPassBundle:Node',
-            'entity_classes' => array(
-                'PassVault\PassBundle\Entity\Organization',
-                'PassVault\PassBundle\Entity\Folder',
-            ),
-            'entity_parent' => 'parent',
-            'entity_sort' => array('name')
+            'label' => 'team.form.name.label',
         ));
 
         // Adding the submit button
@@ -67,7 +55,7 @@ class FolderType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PassVault\PassBundle\Entity\Folder',
+            'data_class' => 'PassVault\UserBundle\Entity\Team',
             'cascade_validation' => true
         ));
     }
@@ -77,6 +65,6 @@ class FolderType extends AbstractType
      */
     public function getName()
     {
-        return 'folder';
+        return 'team';
     }
 }

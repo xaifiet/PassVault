@@ -1,7 +1,17 @@
-organization:
+node:
   form:
     name:
       label: Name
-form:
-  name:
-    label: Name
+    parent:
+      label: Parent
+
+passvault:
+  form:
+    account:
+      label: Account
+    link:
+      label: Link
+    password:
+      label: Password
+
+Submit: Submit

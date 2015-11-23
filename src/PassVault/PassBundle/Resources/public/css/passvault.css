@@ -1,0 +1,7 @@
+.tree-activate > td {
+    border-left: 3px solid #3c8dbc !important;
+}
+
+input.passvault {
+    -webkit-text-security: disc;
+}

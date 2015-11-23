@@ -1,7 +1,17 @@
-oranization:
+node:
   form:
     name:
       label: Nom
-form:
-  name:
-    label: Test
+    parent:
+      label: Parent
+
+passvault:
+  form:
+    account:
+      label: Compte
+    link:
+      label: Lien
+    password:
+      label: Mot de passe
+
+Submit: Envoyer

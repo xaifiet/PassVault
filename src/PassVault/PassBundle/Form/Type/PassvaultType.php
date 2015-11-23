@@ -37,12 +37,11 @@ class PassvaultType extends AbstractType
     {
 
         $builder->add('name', 'text', array(
-            'label' => 'organization.form.name.label',
-            'attr' => array(
-                'class' => 'form-control')));
+            'label' => 'node.form.name.label',
+        ));
 
         $builder->add('parent', 'entity_modal', array(
-            'label' => 'page.form.parent.label',
+            'label' => 'node.form.parent.label',
             'entity_label' => array('name'),
             'entity_repository' => 'PassVaultPassBundle:Node',
             'entity_classes' => array(
@@ -54,19 +53,16 @@ class PassvaultType extends AbstractType
         ));
 
         $builder->add('link', 'text', array(
-            'label' => 'organization.form.name.label',
-            'attr' => array(
-                'class' => 'form-control')));
+            'label' => 'passvault.form.link.label',
+        ));
 
         $builder->add('account', 'text', array(
-            'label' => 'organization.form.name.label',
-            'attr' => array(
-                'class' => 'form-control')));
+            'label' => 'passvault.form.account.label',
+        ));
 
-        $builder->add('password', 'password', array(
-            'label' => 'organization.form.name.label',
-            'attr' => array(
-                'class' => 'form-control')));
+        $builder->add('password', 'text', array(
+            'label' => 'passvault.form.password.label',
+        ));
 
         // Adding the submit button
         $builder->add('submit', 'submit', array(

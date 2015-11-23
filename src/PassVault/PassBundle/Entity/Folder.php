@@ -22,9 +22,4 @@ class Folder extends \PassVault\PassBundle\Entity\Node
         parent::__construct();
     }
 
-    public function getInheritanceType()
-    {
-        return 'folder';
-    }
-
 }

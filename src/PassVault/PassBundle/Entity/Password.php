@@ -13,12 +13,6 @@ class Password extends \PassVault\PassBundle\Entity\Node
 {
 
     /**
-     * @ORM\Column(type="string", length=100)
-     * @Assert\NotBlank()
-     */
-    private $passType;
-
-    /**
      * @ORM\Column(type="string", length=500)
      * @Assert\NotBlank()
      */
@@ -44,11 +38,6 @@ class Password extends \PassVault\PassBundle\Entity\Node
     public function __construct()
     {
         parent::__construct();
-    }
-
-    public function getInheritanceType()
-    {
-        return 'password';
     }
 
 

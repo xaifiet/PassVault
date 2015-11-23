@@ -9,66 +9,43 @@ use Symfony\Component\HttpFoundation\Request;
 class PasswordController extends Controller
 {
 
-    public function addAction(Request $request)
+    public function addAction(Request $request, $parent, $nodes)
     {
-        $password = new Password();
+        $node = new Password();
 
-        $form = $this->createForm('passvault', $password, array(
-            'action' => $request->getUri(),
-            'method' => 'POST'
-        ));
-
-        $form->handleRequest($request);
-        $redirect = false;
-
-        if ($form->isValid()) {
-            if ($form->get('submit')->isClicked()) {
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($password);
-                $em->flush();
-                $redirect = true;
-            }
+        if (!is_null($parent)) {
+            $node->setParent($parent);
         }
 
-        if ($redirect) {
-            return $this->redirectToRoute('passvault_password_edit', array('id' => $password->getId()));
-        }
-
-        return $this->render('PassVaultPassBundle:Password:add.html.twig', array(
-            'form' => $form->createView(),
-            'node' => $password,
-        ));
+        return $this->viewAction($request, $nodes, $node);
     }
 
-    public function editAction(Request $request, $id)
+    public function viewAction(Request $request, $nodes, $node)
     {
-        $password = $this->getDoctrine()->getRepository('PassVaultPassBundle:Password')->find($id);
 
-        $form = $this->createForm('passvault', $password, array(
+        $form = $this->createForm('passvault', $node, array(
             'action' => $request->getUri(),
             'method' => 'POST'
         ));
 
         $form->handleRequest($request);
-        $redirect = false;
 
         if ($form->isValid()) {
             if ($form->get('submit')->isClicked()) {
                 $em = $this->getDoctrine()->getManager();
-                $em->persist($password);
+                $em->persist($node);
                 $em->flush();
-                $redirect = true;
+
+                return $this->redirectToRoute('passvault_node_view', array('id' => $node->getId()));
             }
         }
 
-        if ($redirect) {
-            return $this->redirectToRoute('passvault_password_edit', array('id' => $password->getId()));
-        }
-
-        return $this->render('PassVaultPassBundle:Password:add.html.twig', array(
-            'form' => $form->createView(),
-            'node' => $password,
+        return $this->render('PassVaultPassBundle:Password:view.html.twig', array(
+            'nodes' => $nodes,
+            'node' => $node,
+            'form' => $form->createView()
         ));
+
     }
 
 }

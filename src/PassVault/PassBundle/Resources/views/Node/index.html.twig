@@ -1,6 +1,15 @@
 {% extends ':Layout:base.html.twig' %}
 
+{% set module = 'password' %}
+
 {% block body %}
+
+    {% if not node.id is null %}
+        {% set activeNode = node %}
+    {% elseif not node.parent is null %}
+        {% set activeNode = node.parent %}
+    {% endif %}
+
     <div class="wrapper">
         {% include ':Layout:header.html.twig' %}
         {% include ':Layout:sidebar.html.twig' %}
@@ -10,17 +19,18 @@
             </section>
             <section class="content">
                 <div class="col-xs-4">
-                    <div class="box">
+                    <a href="{{ path('passvault_node_add', {'type': 'organization'}) }}" class="btn btn-primary btn-block margin-bottom">Create an organization</a>
+                    <div class="box box-primary">
                         <div class="box-body table-responsive no-padding">
-                            <table class="table table-bordered treegrid">
+                            <table class="table table-bordered treegrid nav-stacked">
                                 <thead>
                                 <tr>
-                                    <th>Name</th>
+                                    <th>Organizations</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 {% for treenode in nodes %}
-                                    <tr class="treegrid-{{ treenode.id }}{% if treenode.parent != null %} treegrid-parent-{{ treenode.parent.id }}{% endif %}{% if node is defined and treenode == node %} tree-activate{% endif %}">
+                                    <tr class="treegrid-{{ treenode.id }}{% if treenode.parent != null %} treegrid-parent-{{ treenode.parent.id }}{% endif %}{% if activeNode is defined and treenode == activeNode %} tree-activate{% endif %}">
                                         <td>
                                             {% if treenode.icon is defined %}
                                                 <i class="{{ treenode.icon }}"></i>
@@ -35,13 +45,7 @@
                     </div>
                 </div>
                 <div class="col-xs-8">
-                    {% if node is instanceof('\\PassVault\\PassBundle\\Entity\\Folder') %}
-                        {% include 'PassVaultPassBundle:Folder:view.html.twig' with {'node': node, 'form': form} %}
-                    {% elseif node is instanceof('\\PassVault\\PassBundle\\Entity\\Organization') %}
-                        {% include 'PassVaultPassBundle:Organization:view.html.twig' with {'node': node, 'form': form} %}
-                    {% elseif node is instanceof('\\PassVault\\PassBundle\\Entity\\Password') %}
-                        {% include 'PassVaultPassBundle:Password:view.html.twig' with {'node': node, 'form': form} %}
-                    {% endif %}
+                    {% block node %}{% endblock %}
                 </div>
             </section>
         </div>

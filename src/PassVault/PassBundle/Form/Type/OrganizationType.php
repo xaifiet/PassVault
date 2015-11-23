@@ -37,14 +37,13 @@ class OrganizationType extends AbstractType
     {
 
         $builder->add('name', 'text', array(
-            'label' => 'organization.form.name.label',
-            'attr' => array(
-                'class' => 'form-control')));
+            'label' => 'node.form.name.label',
+        ));
 
         // Adding the submit button
         $builder->add('submit', 'submit', array(
             'attr' => array(
-                'class' => 'btn btn-sm btn-success'
+                'class' => 'btn-sm btn-success'
             )
         ));
 

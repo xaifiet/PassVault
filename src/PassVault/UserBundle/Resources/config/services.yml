@@ -1,4 +1,8 @@
 services:
-#    pass_vault_user.example:
-#        class: PassVault\UserBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+
+    passvault.form_type.team_type:
+        class: PassVault\UserBundle\Form\Type\TeamType
+        arguments:
+            - @service_container
+        tags:
+            - { name: form.type, alias: team }

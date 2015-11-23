@@ -8,3 +8,23 @@ passvault_user_check:
 
 passvault_user_logout:
     path: /user/logout
+
+passvault_team_index:
+    path: /team
+    defaults:
+        _controller: PassVaultUserBundle:Team:view
+
+passvault_team_view:
+    path: /team/view/{id}
+    defaults:
+        _controller: PassVaultUserBundle:Team:view
+
+passvault_team_add:
+    path: /team/add
+    defaults:
+        _controller: PassVaultUserBundle:Team:view
+
+passvault_team_delete:
+    path: /team/delete
+    defaults:
+        _controller: PassVaultUserBundle:Team:delete

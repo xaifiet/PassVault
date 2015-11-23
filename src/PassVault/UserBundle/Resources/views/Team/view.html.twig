@@ -1,0 +1,48 @@
+{% extends ':Layout:base.html.twig' %}
+
+{% set module = 'team' %}
+
+{% block body %}
+    <div class="wrapper">
+        {% include ':Layout:header.html.twig' %}
+        {% include ':Layout:sidebar.html.twig' %}
+        <div class="content-wrapper">
+            <section class="content-header">
+                <h1>Teams</h1>
+            </section>
+            <section class="content">
+                <div class="col-xs-4">
+                    <a href="{{ path('passvault_team_add') }}" class="btn btn-primary btn-block margin-bottom">Create a team</a>
+                    <div class="box box-solid">
+                        <div class="box-body no-padding">
+                            <ul class="nav nav-stacked">
+                                {% for teammenu in teams %}
+                                    <li {% if team is defined and teammenu == team %}class="active"{% endif %}>
+                                        <a href="{{ path('passvault_team_view', {'id': teammenu.id}) }}">{{ teammenu.name }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-8">
+                    {% if not team is null %}
+                        {{ form_start(form) }}
+                            <div class="box box-primary">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">{% if team.id is null %}new Team{% else %}Team {{ team.name }}{% endif %}</h3>
+                                    <div class="box-tools pull-right">
+                                        {{ form_widget(form.submit) }}
+                                    </div>
+                                </div>
+                                <div class="box-body">
+                                    {{ form_row(form.name) }}
+                                </div>
+                            </div>
+                        {{ form_end(form) }}
+                    {% endif %}
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock %}

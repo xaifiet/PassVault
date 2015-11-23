@@ -36,6 +36,7 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     form_themes:
+        - 'bootstrap_3_layout.html.twig'
         - ':Form:theme.html.twig'
         - 'EntityModalBundle:EntityModal:form_theme.html.twig'
 
@@ -133,6 +134,11 @@ assetic:
         passvault_js:
             inputs:
                 - %kernel.root_dir%/../src/PassVault/PassBundle/Resources/public/js/passvault.js
+
+        passvault_css:
+            inputs:
+                - %kernel.root_dir%/../src/PassVault/PassBundle/Resources/public/css/passvault.css
+
 
 # Doctrine Configuration
 doctrine:

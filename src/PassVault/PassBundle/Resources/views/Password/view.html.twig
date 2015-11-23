@@ -1,19 +1,23 @@
-{% form_theme form 'PassVaultPassBundle:Form:password.html.twig' %}
+{% extends 'PassVaultPassBundle:Node:index.html.twig' %}
 
-{{ form_start(form) }}
-    <div class="box">
-        <div class="box-header with-border">
-            <h3 class="box-title">Password {{ node.name }}</h3>
-            <div class="box-tools pull-right">
-                {{ form_widget(form.submit) }}
+{% form_theme form.password 'PassVaultPassBundle:Form:password.html.twig' %}
+
+{% block node %}
+    {{ form_start(form) }}
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">{% if node.id is null %}new Password{% else %}Password {{ node.name }}{% endif %}</h3>
+                <div class="box-tools pull-right">
+                    {{ form_widget(form.submit) }}
+                </div>
+            </div>
+            <div class="box-body">
+                {{ form_row(form.name) }}
+                {{ form_row(form.parent) }}
+                {{ form_row(form.link) }}
+                {{ form_row(form.account) }}
+                {{ form_row(form.password) }}
             </div>
         </div>
-        <div class="box-body">
-            {{ form_row(form.name) }}
-            {{ form_row(form.parent) }}
-            {{ form_row(form.link) }}
-            {{ form_row(form.account) }}
-            {{ form_row(form.password) }}
-        </div>
-    </div>
-{{ form_end(form) }}
+    {{ form_end(form) }}
+{% endblock %}
