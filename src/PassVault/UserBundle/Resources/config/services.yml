@@ -6,3 +6,10 @@ services:
             - @service_container
         tags:
             - { name: form.type, alias: team }
+
+    passvault.form_type.teamuser_type:
+        class: PassVault\UserBundle\Form\Type\TeamUserType
+        arguments:
+            - @service_container
+        tags:
+            - { name: form.type, alias: teamuser }

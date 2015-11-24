@@ -4,10 +4,12 @@
 
 {% block body %}
 
-    {% if not node.id is null %}
-        {% set activeNode = node %}
-    {% elseif not node.parent is null %}
-        {% set activeNode = node.parent %}
+    {% if node is defined %}
+        {% if not node.id is null %}
+            {% set activeNode = node %}
+        {% elseif not node.parent is null %}
+            {% set activeNode = node.parent %}
+        {% endif %}
     {% endif %}
 
     <div class="wrapper">

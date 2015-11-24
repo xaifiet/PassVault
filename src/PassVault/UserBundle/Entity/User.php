@@ -49,9 +49,15 @@ class User extends BaseUser
      */
     protected $lastname;
 
+    /**
+     * @ORM\OneToMany(targetEntity="TeamUser", mappedBy="user", cascade={"all"}, orphanRemoval=true)
+     **/
+    private $teamUsers;
+
     public function __construct()
     {
         parent::__construct();
+        $this->teamUsers = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function getFullName()
@@ -135,4 +141,38 @@ class User extends BaseUser
         return $this->lastname;
     }
 
+
+    /**
+     * Add teamUser
+     *
+     * @param \PassVault\UserBundle\Entity\TeamUser $teamUser
+     *
+     * @return User
+     */
+    public function addTeamUser(\PassVault\UserBundle\Entity\TeamUser $teamUser)
+    {
+        $this->teamUsers[] = $teamUser;
+
+        return $this;
+    }
+
+    /**
+     * Remove teamUser
+     *
+     * @param \PassVault\UserBundle\Entity\TeamUser $teamUser
+     */
+    public function removeTeamUser(\PassVault\UserBundle\Entity\TeamUser $teamUser)
+    {
+        $this->teamUsers->removeElement($teamUser);
+    }
+
+    /**
+     * Get teamUsers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTeamUsers()
+    {
+        return $this->teamUsers;
+    }
 }

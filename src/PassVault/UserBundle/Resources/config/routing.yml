@@ -25,6 +25,11 @@ passvault_team_add:
         _controller: PassVaultUserBundle:Team:view
 
 passvault_team_delete:
-    path: /team/delete
+    path: /team/{id}/delete
     defaults:
         _controller: PassVaultUserBundle:Team:delete
+
+passvault_team_add_user:
+    path: /team/{id}/add/user
+    defaults:
+        _controller: PassVaultUserBundle:Team:invite

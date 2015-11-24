@@ -27,6 +27,18 @@ class Team
      */
     protected $name;
 
+    /**
+     * @ORM\OneToMany(targetEntity="TeamUser", mappedBy="team", cascade={"all"}, orphanRemoval=true)
+     **/
+    private $teamUsers;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->teamUsers = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -62,4 +74,37 @@ class Team
         return $this->name;
     }
 
+    /**
+     * Add teamUser
+     *
+     * @param \PassVault\UserBundle\Entity\TeamUser $teamUser
+     *
+     * @return Team
+     */
+    public function addTeamUser(\PassVault\UserBundle\Entity\TeamUser $teamUser)
+    {
+        $this->teamUsers[] = $teamUser;
+
+        return $this;
+    }
+
+    /**
+     * Remove teamUser
+     *
+     * @param \PassVault\UserBundle\Entity\TeamUser $teamUser
+     */
+    public function removeTeamUser(\PassVault\UserBundle\Entity\TeamUser $teamUser)
+    {
+        $this->teamUsers->removeElement($teamUser);
+    }
+
+    /**
+     * Get teamUsers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTeamUsers()
+    {
+        return $this->teamUsers;
+    }
 }

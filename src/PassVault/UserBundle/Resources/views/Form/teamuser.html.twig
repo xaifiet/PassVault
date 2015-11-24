@@ -1,0 +1,25 @@
+{% block collection_row %}
+    {{ form_widget(form) }}
+{% endblock collection_row %}
+
+{% block collection_widget %}
+    {% for child in form %}
+        <tr id="{{ form.vars.id }}" role="row" class="odd">
+            <td class="sorting_1">{{ form.vars.value[loop.index0].user.lastname }}</td>
+            <td class="sorting_1">{{ form.vars.value[loop.index0].user.firstname }}</td>
+            <td>{{ form.vars.value[loop.index0].user.email }}</td>
+            <td class="role">
+                <span>{{ form.vars.value[loop.index0].role }}</span>
+                {{ form_widget(child.role) }}
+            </td>
+            <td>
+                {% if app.user != form.vars.value[loop.index0].user %}
+                    <a href="#" class="btn btn-sm btn-info" data-bind="click{editRole(#{{ form.vars.id }})}">Edit</a>
+                    <a href="#" class="btn btn-sm btn-danger" data-bind="click{deleteDom(#{{ form.vars.id }})}">Delete</a>
+                {% endif %}
+                {{ form_widget(child.team) }}
+                {{ form_widget(child.user) }}
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock collection_widget %}

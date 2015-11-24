@@ -3,6 +3,8 @@
 namespace PassVault\UserBundle\Controller;
 
 use PassVault\UserBundle\Entity\Team;
+use PassVault\UserBundle\Entity\TeamUser;
+use PassVault\UserBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -34,7 +36,29 @@ class TeamController extends Controller
             if ($form->get('submit')->isClicked()) {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($team);
+
+                $flg = false;
+                $user = $this->getUser();
+                foreach ($team->getTeamUsers() as $teamuser) {
+                    if ($teamuser->getUser() == $user) {
+                        $flg = true;
+                        if ($teamuser->getRole() != 'ROLE_ADMIN') {
+                            $teamuser->setRole('ROLE_ADMIN');
+                            $em->persist($teamuser);
+                        }
+                    }
+                }
                 $em->flush();
+
+                if (!$flg) {
+                    $teamuser = new TeamUser();
+                    $teamuser->setTeam($team);
+                    $teamuser->setUser($user);
+                    $teamuser->setRole('ROLE_ADMIN');
+                    $em->persist($teamuser);
+                    $em->flush();
+                }
+
                 return $this->redirectToRoute('passvault_team_view', array('id' => $team->getId()));
             }
         }
@@ -45,6 +69,34 @@ class TeamController extends Controller
             'form' => $form->createView()
 
         ));
+    }
+
+    public function inviteAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $team = $this->getDoctrine()->getRepository('PassVaultUserBundle:Team')->find($id);
+
+        $email = $request->get('email');
+
+        $user = $this->getDoctrine()->getRepository('PassVaultUserBundle:User')->findOneBy(array('email' => $email));
+
+        if (is_null($user)) {
+            $user = new User();
+            $user->setEmail($email);
+            $user->addRole('ROLE_USER');
+            $user->setPlainPassword(md5($email));
+            $em->persist($user);
+        }
+
+        $teamuser = new TeamUser();
+        $teamuser->setTeam($team);
+        $teamuser->setUser($user);
+        $teamuser->setRole($request->get('role'));
+        $em->persist($teamuser);
+        $em->flush();
+
+        return $this->redirectToRoute('passvault_team_view', array('id' => $id));
     }
 
     public function deleteAction($id)

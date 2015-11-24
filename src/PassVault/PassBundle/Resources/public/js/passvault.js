@@ -36,6 +36,26 @@ toggleClass = function(event, elem, params) {
     $(input).toggleClass(params[1]);
 };
 
+datatables = function(event, elem, params) {
+    $(elem).DataTable({
+        'lengthChange': false,
+        'pageLength': 5,
+        'searching': false
+    });
+};
+
+editRole = function(event, elem, params) {
+    var row = $(params[0]);
+    $('.role span', row).hide();
+    $('.role select', row).show();
+};
+
+deleteDom = function(event, elem, params) {
+    $(params[0]).each(function() {
+        $(this).remove();
+    });
+};
+
 $(document).ready(function() {
     $('.treegrid').each(function() {
         treegrid($(this));

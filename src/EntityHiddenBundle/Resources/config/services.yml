@@ -1,0 +1,7 @@
+services:
+
+    entity_hidden.form_type.entity_hidden_type:
+        class: EntityHiddenBundle\Form\Type\EntityHiddenType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type, alias: entity_hidden }
