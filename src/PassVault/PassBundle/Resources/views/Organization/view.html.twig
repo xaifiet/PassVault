@@ -2,7 +2,7 @@
 
 {% block node %}
     {{ form_start(form) }}
-        <div class="box box-primary">
+        <div class="box box-primary {% if not node.id is null %}collapsed-box{% endif %}">
             <div class="box-header with-border">
                 <h3 class="box-title">{% if node.id is null %}new Organization{% else %}Organization : {{ node.name }}{% endif %}</h3>
                 <div class="box-tools pull-right">
@@ -11,39 +11,21 @@
                         <a href="{{ path('passvault_node_add_to', {'parent': node.id, 'type': 'password'}) }}" class="btn btn-sm btn-default">Create Password</a>
                     {% endif %}
                     {{ form_widget(form.submit) }}
+                    {% if not node.id is null %}
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                    {% endif %}
                 </div>
             </div>
             <div class="box-body">
                 {{ form_row(form.name) }}
             </div>
         </div>
+        {% include 'PassVaultPassBundle:Node:nodepassword.html.twig' %}
+        {% include 'PassVaultPassBundle:Node:nodeteam.html.twig' %}
+        {% include 'PassVaultPassBundle:Node:nodeuser.html.twig' %}
     {{ form_end(form) }}
-    {% if not node.id is null %}
-        <div class="box box-primary">
-            <div class="box-body table-responsive no-padding">
-                <table class="table table-bordered" data-bind="ready{treegrid()}">
-                    <thead>
-                        <tr>
-                            <th style="width: 150px">Name</th>
-                            <th>URL</th>
-                            <th style="width: 200px">Username</th>
-                            <th style="width: 200px">Password</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for child in node.children %}
-                            {% if child is instanceof('\\PassVault\\PassBundle\\Entity\\Password') %}
-                                <tr>
-                                    <td>{{ child.name }}</td>
-                                    <td>{{ child.link }}</td>
-                                    <td>{{ child.account }}</td>
-                                    <td>{{ child.password }}</td>
-                                </tr>
-                            {% endif %}
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    {% endif %}
+    {% include 'PassVaultPassBundle:Node:nodeteam-modal.html.twig' %}
+    {% include 'PassVaultPassBundle:Node:nodeuser-modal.html.twig' %}
 {% endblock node %}

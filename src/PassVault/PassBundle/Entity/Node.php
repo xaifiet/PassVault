@@ -48,6 +48,17 @@ abstract class Node
      */
     private $updated;
 
+    /**
+     * @ORM\OneToMany(targetEntity="nodeTeam", mappedBy="node", cascade={"all"}, orphanRemoval=true)
+     **/
+    private $teams;
+
+    /**
+     * @ORM\OneToMany(targetEntity="nodeUser", mappedBy="node", cascade={"all"}, orphanRemoval=true)
+     **/
+    private $users;
+
+
     protected $icon = null;
 
     /**
@@ -213,5 +224,73 @@ abstract class Node
     public function getChildren()
     {
         return $this->children;
+    }
+
+    /**
+     * Add team
+     *
+     * @param \PassVault\PassBundle\Entity\nodeTeam $team
+     *
+     * @return Node
+     */
+    public function addTeam(\PassVault\PassBundle\Entity\nodeTeam $team)
+    {
+        $this->teams[] = $team;
+
+        return $this;
+    }
+
+    /**
+     * Remove team
+     *
+     * @param \PassVault\PassBundle\Entity\nodeTeam $team
+     */
+    public function removeTeam(\PassVault\PassBundle\Entity\nodeTeam $team)
+    {
+        $this->teams->removeElement($team);
+    }
+
+    /**
+     * Get teams
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTeams()
+    {
+        return $this->teams;
+    }
+
+    /**
+     * Add user
+     *
+     * @param \PassVault\PassBundle\Entity\nodeUser $user
+     *
+     * @return Node
+     */
+    public function addUser(\PassVault\PassBundle\Entity\nodeUser $user)
+    {
+        $this->users[] = $user;
+
+        return $this;
+    }
+
+    /**
+     * Remove user
+     *
+     * @param \PassVault\PassBundle\Entity\nodeUser $user
+     */
+    public function removeUser(\PassVault\PassBundle\Entity\nodeUser $user)
+    {
+        $this->users->removeElement($user);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }

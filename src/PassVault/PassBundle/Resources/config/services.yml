@@ -5,6 +5,13 @@ services:
         tags:
             - { name: twig.extension }
 
+    passvault.form_type.node_type:
+        class: PassVault\PassBundle\Form\Type\NodeType
+        arguments:
+            - @service_container
+        tags:
+            - { name: form.type, alias: node }
+
     passvault.form_type.organization_type:
         class: PassVault\PassBundle\Form\Type\OrganizationType
         arguments:
@@ -26,3 +33,16 @@ services:
         tags:
             - { name: form.type, alias: passvault }
 
+    passvault.form_type.nodeteam_type:
+        class: PassVault\PassBundle\Form\Type\NodeTeamType
+        arguments:
+            - @service_container
+        tags:
+            - { name: form.type, alias: nodeteam }
+
+    passvault.form_type.teamuser_type:
+        class: PassVault\PassBundle\Form\Type\NodeUserType
+        arguments:
+            - @service_container
+        tags:
+            - { name: form.type, alias: nodeuser }

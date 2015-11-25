@@ -1,28 +1,28 @@
 <?php
 
-namespace PassVault\UserBundle\Entity;
+namespace PassVault\PassBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="pv_teams_users")
+ * @ORM\Table(name="pv_nodes_users")
  */
-class TeamUser
+class NodeUser
 {
 
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Team", inversedBy="users")
+     * @ORM\ManyToOne(targetEntity="Node", inversedBy="users")
      * @ORM\JoinColumn(nullable=false)
      **/
-    private $team;
+    private $node;
 
 
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="teams")
+     * @ORM\ManyToOne(targetEntity="\PassVault\UserBundle\Entity\User", inversedBy="nodes")
      * @ORM\JoinColumn(nullable=false)
      **/
     private $user;
@@ -39,7 +39,7 @@ class TeamUser
      *
      * @param string $role
      *
-     * @return TeamUser
+     * @return NodeUser
      */
     public function setRole($role)
     {
@@ -59,27 +59,27 @@ class TeamUser
     }
 
     /**
-     * Set team
+     * Set node
      *
-     * @param \PassVault\UserBundle\Entity\Team $team
+     * @param \PassVault\PassBundle\Entity\Node $node
      *
-     * @return TeamUser
+     * @return NodeUser
      */
-    public function setTeam(\PassVault\UserBundle\Entity\Team $team)
+    public function setNode(\PassVault\PassBundle\Entity\Node $node)
     {
-        $this->team = $team;
+        $this->node = $node;
 
         return $this;
     }
 
     /**
-     * Get team
+     * Get node
      *
-     * @return \PassVault\UserBundle\Entity\Team
+     * @return \PassVault\PassBundle\Entity\Node
      */
-    public function getTeam()
+    public function getNode()
     {
-        return $this->team;
+        return $this->node;
     }
 
     /**
@@ -87,7 +87,7 @@ class TeamUser
      *
      * @param \PassVault\UserBundle\Entity\User $user
      *
-     * @return TeamUser
+     * @return NodeUser
      */
     public function setUser(\PassVault\UserBundle\Entity\User $user)
     {

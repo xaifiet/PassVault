@@ -5,6 +5,9 @@ namespace PassVault\PassBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+use PassVault\PassBundle\Entity\NodeTeam;
+use PassVault\PassBundle\Entity\NodeUser;
+
 class NodeController extends Controller
 {
 
@@ -61,7 +64,7 @@ class NodeController extends Controller
         }
 
         if (in_array($type, array_keys($this->types))) {
-            $nodeController = $this->types[$type]['controller'].':add';
+            $nodeController = $this->types[$type]['controller'] . ':add';
         } else {
             $nodeController = null;
         }
@@ -84,7 +87,7 @@ class NodeController extends Controller
 
         $nodes = $this->getNodes();
 
-        if (is_null($id)){
+        if (is_null($id)) {
             $node = null;
             $nodeController = null;
         } else {
@@ -93,7 +96,7 @@ class NodeController extends Controller
             $nodeController = null;
             foreach ($this->types as $type) {
                 if ($type['class'] == get_class($node)) {
-                    $nodeController = $type['controller'].':view';
+                    $nodeController = $type['controller'] . ':view';
                 }
             }
         }
@@ -109,6 +112,52 @@ class NodeController extends Controller
             'nodes' => $nodes,
             'node' => $node
         ));
+    }
+
+    public function addTeamAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $node = $this->getDoctrine()->getRepository('PassVaultPassBundle:Node')->find($id);
+
+        $team = $this->getDoctrine()->getRepository('PassVaultUserBundle:Team')->find($request->get('team'));
+
+        $nodeteam = new NodeTeam();
+        $nodeteam->setNode($node);
+        $nodeteam->setTeam($team);
+        $nodeteam->setRole($request->get('role'));
+        $em->persist($nodeteam);
+        $em->flush();
+
+        return $this->redirectToRoute('passvault_node_view', array('id' => $id));
+    }
+
+    public function addUserAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $node = $this->getDoctrine()->getRepository('PassVaultPassBundle:Node')->find($id);
+
+        $email = $request->get('email');
+
+        $user = $this->getDoctrine()->getRepository('PassVaultUserBundle:User')->findOneBy(array('email' => $email));
+
+        if (is_null($user)) {
+            $user = new User();
+            $user->setEmail($email);
+            $user->addRole('ROLE_USER');
+            $user->setPlainPassword(md5($email));
+            $em->persist($user);
+        }
+
+        $nodeuser = new NodeUser();
+        $nodeuser->setNode($node);
+        $nodeuser->setUser($user);
+        $nodeuser->setRole($request->get('role'));
+        $em->persist($nodeuser);
+        $em->flush();
+
+        return $this->redirectToRoute('passvault_node_view', array('id' => $id));
     }
 
 }

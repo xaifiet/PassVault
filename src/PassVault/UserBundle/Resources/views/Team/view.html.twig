@@ -1,6 +1,6 @@
 {% extends ':Layout:base.html.twig' %}
 
-{% form_theme form.teamUsers 'PassVaultUserBundle:Form:teamuser.html.twig' %}
+{% form_theme form.users 'PassVaultUserBundle:Form:teamuser.html.twig' %}
 
 {% set module = 'team' %}
 
@@ -64,7 +64,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {{ form_row(form.teamUsers) }}
+                                                {{ form_row(form.users) }}
                                             </tbody>
                                         </table>
                                     </div>
@@ -80,7 +80,7 @@
         <div id="inviteUser-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="{{ path('passvault_team_add_user', {'id': team.id}) }}" method="POST" />
+                    <form action="{{ path('passvault_team_add_user', {'id': team.id}) }}" method="POST">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             <h4 class="modal-title">Invite User</h4>

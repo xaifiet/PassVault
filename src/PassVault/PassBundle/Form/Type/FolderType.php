@@ -36,10 +36,6 @@ class FolderType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
-        $builder->add('name', 'text', array(
-            'label' => 'node.form.name.label',
-        ));
-
         $builder->add('parent', 'entity_modal', array(
             'label' => 'node.form.parent.label',
             'entity_label' => array('name'),
@@ -70,6 +66,14 @@ class FolderType extends AbstractType
             'data_class' => 'PassVault\PassBundle\Entity\Folder',
             'cascade_validation' => true
         ));
+    }
+
+    /**
+     * @return string
+     */
+    public function getParent()
+    {
+        return 'node';
     }
 
     /**

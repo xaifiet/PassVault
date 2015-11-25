@@ -1,6 +1,6 @@
 <?php
 
-namespace PassVault\UserBundle\Form\Type;
+namespace PassVault\PassBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -8,10 +8,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\DependencyInjection\Container;
 
 /**
- * Class TeamType
- * @package PassVault\UserBundle\Form\Type
+ * Class NodeType
+ * @package PassVault\PassBundle\Form\Type
  */
-class TeamType extends AbstractType
+class NodeType extends AbstractType
 {
 
     protected $container;
@@ -37,23 +37,24 @@ class TeamType extends AbstractType
     {
 
         $builder->add('name', 'text', array(
-            'label' => 'team.form.name.label',
+            'label' => 'node.form.name.label',
         ));
 
-        $builder->add('users', 'collection', array(
-            'label' => 'team.form.name.label',
-            'type' => 'teamuser',
+        $builder->add('teams', 'collection', array(
+            'label' => 'team.form.teams.label',
+            'type' => 'nodeteam',
             'allow_delete' => true,
             'options' => array(
                 'required' => false
             )
-
         ));
 
-        // Adding the submit button
-        $builder->add('submit', 'submit', array(
-            'attr' => array(
-                'class' => 'btn-sm btn-success'
+        $builder->add('users', 'collection', array(
+            'label' => 'team.form.users.label',
+            'type' => 'nodeuser',
+            'allow_delete' => true,
+            'options' => array(
+                'required' => false
             )
         ));
 
@@ -65,7 +66,7 @@ class TeamType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PassVault\UserBundle\Entity\Team',
+            'data_class' => 'PassVault\PassBundle\Entity\Node',
             'cascade_validation' => true
         ));
     }
@@ -75,6 +76,6 @@ class TeamType extends AbstractType
      */
     public function getName()
     {
-        return 'team';
+        return 'node';
     }
 }

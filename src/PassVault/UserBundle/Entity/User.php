@@ -52,7 +52,13 @@ class User extends BaseUser
     /**
      * @ORM\OneToMany(targetEntity="TeamUser", mappedBy="user", cascade={"all"}, orphanRemoval=true)
      **/
-    private $teamUsers;
+    private $teams;
+
+    /**
+     * @ORM\OneToMany(targetEntity="\PassVault\PassBundle\Entity\NodeUser", mappedBy="user", cascade={"all"}, orphanRemoval=true)
+     **/
+    private $nodes;
+
 
     public function __construct()
     {
@@ -141,38 +147,72 @@ class User extends BaseUser
         return $this->lastname;
     }
 
-
     /**
-     * Add teamUser
+     * Add team
      *
-     * @param \PassVault\UserBundle\Entity\TeamUser $teamUser
+     * @param \PassVault\UserBundle\Entity\TeamUser $team
      *
      * @return User
      */
-    public function addTeamUser(\PassVault\UserBundle\Entity\TeamUser $teamUser)
+    public function addTeam(\PassVault\UserBundle\Entity\TeamUser $team)
     {
-        $this->teamUsers[] = $teamUser;
+        $this->teams[] = $team;
 
         return $this;
     }
 
     /**
-     * Remove teamUser
+     * Remove team
      *
-     * @param \PassVault\UserBundle\Entity\TeamUser $teamUser
+     * @param \PassVault\UserBundle\Entity\TeamUser $team
      */
-    public function removeTeamUser(\PassVault\UserBundle\Entity\TeamUser $teamUser)
+    public function removeTeam(\PassVault\UserBundle\Entity\TeamUser $team)
     {
-        $this->teamUsers->removeElement($teamUser);
+        $this->teams->removeElement($team);
     }
 
     /**
-     * Get teamUsers
+     * Get teams
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getTeamUsers()
+    public function getTeams()
     {
-        return $this->teamUsers;
+        return $this->teams;
+    }
+
+
+    /**
+     * Add node
+     *
+     * @param \PassVault\PassBundle\Entity\NodeUser $node
+     *
+     * @return User
+     */
+    public function addNode(\PassVault\PassBundle\Entity\NodeUser $node)
+    {
+        $this->nodes[] = $node;
+
+        return $this;
+    }
+
+    /**
+     * Remove node
+     *
+     * @param \PassVault\PassBundle\Entity\NodeUser $node
+     */
+    public function removeNode(\PassVault\PassBundle\Entity\NodeUser $node)
+    {
+        $this->nodes->removeElement($node);
+    }
+
+    /**
+     * Get nodes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getNodes()
+    {
+        return $this->nodes;
     }
 }

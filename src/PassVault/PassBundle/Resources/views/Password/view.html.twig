@@ -19,5 +19,9 @@
                 {{ form_row(form.password) }}
             </div>
         </div>
+        {% include 'PassVaultPassBundle:Node:nodeteam.html.twig' %}
+        {% include 'PassVaultPassBundle:Node:nodeuser.html.twig' %}
     {{ form_end(form) }}
+    {% include 'PassVaultPassBundle:Node:nodeteam-modal.html.twig' %}
+    {% include 'PassVaultPassBundle:Node:nodeuser-modal.html.twig' %}
 {% endblock %}

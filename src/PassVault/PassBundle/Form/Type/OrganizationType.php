@@ -36,10 +36,6 @@ class OrganizationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
-        $builder->add('name', 'text', array(
-            'label' => 'node.form.name.label',
-        ));
-
         // Adding the submit button
         $builder->add('submit', 'submit', array(
             'attr' => array(
@@ -58,6 +54,14 @@ class OrganizationType extends AbstractType
             'data_class' => 'PassVault\PassBundle\Entity\Organization',
             'cascade_validation' => true
         ));
+    }
+
+    /**
+     * @return string
+     */
+    public function getParent()
+    {
+        return 'node';
     }
 
     /**

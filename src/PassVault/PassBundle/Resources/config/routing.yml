@@ -11,13 +11,25 @@ passvault_homepage:
 #
 
 passvault_node_view:
-    path:     /node/view/{id}
+    path:     /node/{id}/view
     defaults: { _controller: PassVaultPassBundle:Node:view }
 
 passvault_node_add:
     path:     /node/add/{type}
     defaults: { _controller: PassVaultPassBundle:Node:add }
+    requirements:
+        type:  organization|folder|password
 
 passvault_node_add_to:
     path:     /node/{parent}/add/{type}
     defaults: { _controller: PassVaultPassBundle:Node:add }
+    requirements:
+        type:  organization|folder|password
+
+passvault_node_add_team:
+    path:     /node/{id}/add/team
+    defaults: { _controller: PassVaultPassBundle:Node:addTeam }
+
+passvault_node_add_user:
+    path:     /node/{id}/add/user
+    defaults: { _controller: PassVaultPassBundle:Node:addUser }

@@ -87,6 +87,14 @@ class PassvaultType extends AbstractType
     /**
      * @return string
      */
+    public function getParent()
+    {
+        return 'node';
+    }
+
+    /**
+     * @return string
+     */
     public function getName()
     {
         return 'passvault';
