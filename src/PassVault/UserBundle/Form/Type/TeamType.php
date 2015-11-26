@@ -36,6 +36,8 @@ class TeamType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
+        $securityChecker = $this->container->get('security.authorization_checker');
+
         $builder->add('name', 'text', array(
             'label' => 'team.form.name.label',
         ));
@@ -50,13 +52,16 @@ class TeamType extends AbstractType
 
         ));
 
-        // Adding the submit button
-        $builder->add('submit', 'submit', array(
-            'attr' => array(
-                'class' => 'btn-sm btn-success'
-            )
-        ));
+        if ($securityChecker->isGranted('ROLE_ADMINISTRATOR', $options['data'])) {
 
+            // Adding the submit button
+            $builder->add('submit', 'submit', array(
+                'attr' => array(
+                    'class' => 'btn-sm btn-success'
+                )
+            ));
+
+        }
     }
 
     /**

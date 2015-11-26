@@ -8,7 +8,9 @@
             <div class="box-header with-border">
                 <h3 class="box-title">{% if node.id is null %}new Password{% else %}Password {{ node.name }}{% endif %}</h3>
                 <div class="box-tools pull-right">
-                    {{ form_widget(form.submit) }}
+                    {% if form.submit is defined %}
+                        {{ form_widget(form.submit) }}
+                    {% endif %}
                 </div>
             </div>
             <div class="box-body">
@@ -17,6 +19,7 @@
                 {{ form_row(form.link) }}
                 {{ form_row(form.account) }}
                 {{ form_row(form.password) }}
+                {{ form_row(form.inherit) }}
             </div>
         </div>
         {% include 'PassVaultPassBundle:Node:nodeteam.html.twig' %}

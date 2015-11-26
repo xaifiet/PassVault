@@ -1,13 +1,13 @@
 passvault_user_login:
-    path: /user/login
+    path: /sign/in
     defaults:
         _controller: PassVaultUserBundle:User:login
 
 passvault_user_check:
-    path: /user/check
+    path: /sign/check
 
 passvault_user_logout:
-    path: /user/logout
+    path: /sign/out
 
 passvault_team_index:
     path: /team

@@ -36,6 +36,8 @@ class PassvaultType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
+        $securityChecker = $this->container->get('security.authorization_checker');
+
         $builder->add('name', 'text', array(
             'label' => 'node.form.name.label',
         ));
@@ -64,12 +66,24 @@ class PassvaultType extends AbstractType
             'label' => 'passvault.form.password.label',
         ));
 
-        // Adding the submit button
-        $builder->add('submit', 'submit', array(
-            'attr' => array(
-                'class' => 'btn btn-sm btn-success'
+        $builder->add('inherit', 'choice', array(
+            'label' => 'nodeuser.form.inherit.label',
+            'choices' => array(
+                '1' => 'node.form.inherit.list.yes',
+                '0' => 'node.form.inherit.list.no'
             )
         ));
+
+        if ($securityChecker->isGranted('ROLE_CONTRIBUTOR', $options['data'])) {
+
+            // Adding the submit button
+            $builder->add('submit', 'submit', array(
+                'attr' => array(
+                    'class' => 'btn btn-sm btn-success'
+                )
+            ));
+
+        }
 
     }
 

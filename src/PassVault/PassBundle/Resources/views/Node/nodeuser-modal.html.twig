@@ -1,4 +1,4 @@
-{% if not node.id is null %}
+{% if not node.id is null and is_granted('ROLE_ADMINISTRATOR', node) %}
     <div id="add-user-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

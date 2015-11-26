@@ -36,6 +36,8 @@ class FolderType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
+        $securityChecker = $this->container->get('security.authorization_checker');
+
         $builder->add('parent', 'entity_modal', array(
             'label' => 'node.form.parent.label',
             'entity_label' => array('name'),
@@ -48,12 +50,24 @@ class FolderType extends AbstractType
             'entity_sort' => array('name')
         ));
 
-        // Adding the submit button
-        $builder->add('submit', 'submit', array(
-            'attr' => array(
-                'class' => 'btn-sm btn-success'
+        $builder->add('inherit', 'choice', array(
+            'label' => 'nodeuser.form.inherit.label',
+            'choices' => array(
+                '1' => 'node.form.inherit.list.yes',
+                '0' => 'node.form.inherit.list.no'
             )
         ));
+
+        if ($securityChecker->isGranted('ROLE_ADMINISTRATOR', $options['data'])) {
+
+            // Adding the submit button
+            $builder->add('submit', 'submit', array(
+                'attr' => array(
+                    'class' => 'btn-sm btn-success'
+                )
+            ));
+
+        }
 
     }
 

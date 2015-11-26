@@ -6,11 +6,13 @@
             <div class="box-header with-border">
                 <h3 class="box-title">{% if node.id is null %}new Organization{% else %}Organization : {{ node.name }}{% endif %}</h3>
                 <div class="box-tools pull-right">
-                    {% if not node.id is null %}
+                    {% if not node.id is null and is_granted('ROLE_CONTRIBUTOR', node) %}
                         <a href="{{ path('passvault_node_add_to', {'parent': node.id, 'type': 'folder'}) }}" class="btn btn-sm btn-default">Create Folder</a>
                         <a href="{{ path('passvault_node_add_to', {'parent': node.id, 'type': 'password'}) }}" class="btn btn-sm btn-default">Create Password</a>
                     {% endif %}
-                    {{ form_widget(form.submit) }}
+                    {% if form.submit is defined %}
+                        {{ form_widget(form.submit) }}
+                    {% endif %}
                     {% if not node.id is null %}
                         <button type="button" class="btn btn-box-tool" data-widget="collapse">
                             <i class="fa fa-plus"></i>

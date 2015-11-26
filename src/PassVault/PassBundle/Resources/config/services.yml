@@ -5,6 +5,13 @@ services:
         tags:
             - { name: twig.extension }
 
+    pass_vault.security_voter.node_voter:
+        class: PassVault\PassBundle\Security\Authorization\Voter\NodeVoter
+        arguments:
+            - @service_container
+        tags:
+            - { name: security.voter }
+
     passvault.form_type.node_type:
         class: PassVault\PassBundle\Form\Type\NodeType
         arguments:
@@ -40,7 +47,7 @@ services:
         tags:
             - { name: form.type, alias: nodeteam }
 
-    passvault.form_type.teamuser_type:
+    passvault.form_type.nodeuser_type:
         class: PassVault\PassBundle\Form\Type\NodeUserType
         arguments:
             - @service_container

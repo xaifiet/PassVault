@@ -1,5 +1,12 @@
 services:
 
+    pass_vault.security_voter.team_voter:
+        class: PassVault\UserBundle\Security\Authorization\Voter\TeamVoter
+        arguments:
+            - @service_container
+        tags:
+            - { name: security.voter }
+
     passvault.form_type.team_type:
         class: PassVault\UserBundle\Form\Type\TeamType
         arguments:

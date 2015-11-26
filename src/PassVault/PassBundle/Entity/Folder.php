@@ -12,6 +12,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Folder extends \PassVault\PassBundle\Entity\Node
 {
 
+    /**
+     * @ORM\Column(type="boolean")
+     **/
+    private $inherit = true;
+
     protected $icon = 'fa fa-folder';
 
     /**
@@ -22,4 +27,27 @@ class Folder extends \PassVault\PassBundle\Entity\Node
         parent::__construct();
     }
 
+    /**
+     * Set inherit
+     *
+     * @param boolean $inherit
+     *
+     * @return Node
+     */
+    public function setInherit($inherit)
+    {
+        $this->inherit = $inherit;
+
+        return $this;
+    }
+
+    /**
+     * Get inherit
+     *
+     * @return boolean
+     */
+    public function getInherit()
+    {
+        return $this->inherit;
+    }
 }

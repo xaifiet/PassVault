@@ -36,13 +36,18 @@ class OrganizationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
-        // Adding the submit button
-        $builder->add('submit', 'submit', array(
-            'attr' => array(
-                'class' => 'btn-sm btn-success'
-            )
-        ));
+        $securityChecker = $this->container->get('security.authorization_checker');
 
+        if ($securityChecker->isGranted('ROLE_ADMINISTRATOR', $options['data'])) {
+
+            // Adding the submit button
+            $builder->add('submit', 'submit', array(
+                'attr' => array(
+                    'class' => 'btn-sm btn-success'
+                )
+            ));
+
+        }
     }
 
     /**

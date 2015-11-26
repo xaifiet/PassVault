@@ -30,6 +30,11 @@ class Password extends \PassVault\PassBundle\Entity\Node
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="boolean")
+     **/
+    private $inherit = true;
+
     protected $icon = 'fa fa-key';
 
     /**
@@ -135,5 +140,29 @@ class Password extends \PassVault\PassBundle\Entity\Node
     public function getPassword()
     {
         return $this->password;
+    }
+
+    /**
+     * Set inherit
+     *
+     * @param boolean $inherit
+     *
+     * @return Node
+     */
+    public function setInherit($inherit)
+    {
+        $this->inherit = $inherit;
+
+        return $this;
+    }
+
+    /**
+     * Get inherit
+     *
+     * @return boolean
+     */
+    public function getInherit()
+    {
+        return $this->inherit;
     }
 }

@@ -19,7 +19,9 @@
                         <th class="sorting_asc" tabindex="0" aria-controls="teamusers" rowspan="1" colspan="1">Firstname</th>
                         <th class="sorting" tabindex="0" aria-controls="teamusers" rowspan="1" colspan="1">Email</th>
                         <th class="sorting" tabindex="0" aria-controls="teamusers" rowspan="1" colspan="1">Role</th>
-                        <th class="sorting" tabindex="0" aria-controls="teamusers" rowspan="1" colspan="1">Actions</th>
+                        {% if is_granted('ROLE_ADMINISTRATOR', node) %}
+                            <th class="sorting" tabindex="0" aria-controls="teamusers" rowspan="1" colspan="1">Actions</th>
+                        {% endif %}
                     </tr>
                 </thead>
                 <tbody>

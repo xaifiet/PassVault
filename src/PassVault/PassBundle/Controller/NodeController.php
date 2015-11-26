@@ -46,6 +46,9 @@ class NodeController extends Controller
     protected function getChildrenNodes(&$nodes, $parentId, $list)
     {
         foreach ($list as $item) {
+            if (!$this->isGranted('ROLE_READER', $item)) {
+                continue;
+            }
             $itemParentId = is_null($item->getParent()) ? null : $item->getParent()->getId();
             if ($itemParentId === $parentId) {
                 $nodes[] = $item;
@@ -61,6 +64,7 @@ class NodeController extends Controller
 
         if (!is_null($parent)) {
             $parent = $this->getDoctrine()->getRepository('PassVaultPassBundle:Node')->find($parent);
+            $this->denyAccessUnlessGranted('ROLE_CONTRIBUTOR', $parent);
         }
 
         if (in_array($type, array_keys($this->types))) {
@@ -85,6 +89,7 @@ class NodeController extends Controller
     public function viewAction(Request $request, $id = null)
     {
 
+
         $nodes = $this->getNodes();
 
         if (is_null($id)) {
@@ -92,6 +97,7 @@ class NodeController extends Controller
             $nodeController = null;
         } else {
             $node = $this->getDoctrine()->getRepository('PassVaultPassBundle:Node')->find($id);
+            $this->denyAccessUnlessGranted('ROLE_READER', $node);
 
             $nodeController = null;
             foreach ($this->types as $type) {
@@ -120,6 +126,8 @@ class NodeController extends Controller
 
         $node = $this->getDoctrine()->getRepository('PassVaultPassBundle:Node')->find($id);
 
+        $this->denyAccessUnlessGranted('ROLE_ADMINISTRATOR', $node);
+
         $team = $this->getDoctrine()->getRepository('PassVaultUserBundle:Team')->find($request->get('team'));
 
         $nodeteam = new NodeTeam();
@@ -137,6 +145,8 @@ class NodeController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $node = $this->getDoctrine()->getRepository('PassVaultPassBundle:Node')->find($id);
+
+        $this->denyAccessUnlessGranted('ROLE_ADMINISTRATOR', $node);
 
         $email = $request->get('email');
 

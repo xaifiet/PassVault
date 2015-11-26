@@ -19,12 +19,22 @@ security:
         secured_area:
             pattern: ^/
             form_login:
-                check_path: /user/check
-                login_path: /user/login
+                check_path: /sign/check
+                login_path: /sign/in
                 provider: passvault_provider
-                default_target_path: /
                 require_previous_session: false
+                always_use_default_target_path: false
+                default_target_path: /
+                target_path_parameter: _target_path
+                use_referer: true
             logout:
-                path:   /user/logout
+                path:   /sign/out
                 target: /
             anonymous: ~
+
+    access_control:
+        - { path: ^/sign/in, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/css, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/js, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/fonts, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: ROLE_USER }

@@ -23,6 +23,7 @@ class TeamController extends Controller
             $team = new Team();
         } else {
             $team = $this->getDoctrine()->getRepository('PassVaultUserBundle:Team')->find($id);
+            $this->denyAccessUnlessGranted('ROLE_USER', $team);
         }
 
         $form = $this->createForm('team', $team, array(
@@ -39,12 +40,14 @@ class TeamController extends Controller
 
                 $flg = false;
                 $user = $this->getUser();
-                foreach ($team->getTeamUsers() as $teamuser) {
-                    if ($teamuser->getUser() == $user) {
-                        $flg = true;
-                        if ($teamuser->getRole() != 'ROLE_ADMIN') {
-                            $teamuser->setRole('ROLE_ADMIN');
-                            $em->persist($teamuser);
+                if (!is_null($team->getUsers())) {
+                    foreach ($team->getUsers() as $teamuser) {
+                        if ($teamuser->getUser() == $user) {
+                            $flg = true;
+                            if ($teamuser->getRole() != 'ROLE_ADMIN') {
+                                $teamuser->setRole('ROLE_ADMIN');
+                                $em->persist($teamuser);
+                            }
                         }
                     }
                 }
@@ -77,6 +80,8 @@ class TeamController extends Controller
 
         $team = $this->getDoctrine()->getRepository('PassVaultUserBundle:Team')->find($id);
 
+        $this->denyAccessUnlessGranted('ROLE_ADMINISTRATOR', $team);
+
         $email = $request->get('email');
 
         $user = $this->getDoctrine()->getRepository('PassVaultUserBundle:User')->findOneBy(array('email' => $email));
@@ -102,6 +107,8 @@ class TeamController extends Controller
     public function deleteAction($id)
     {
         $team = $this->getDoctrine()->getRepository('PassVaultUserBundle:Team')->find($id);
+
+        $this->denyAccessUnlessGranted('ROLE_ADMINISTRATOR', $team);
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($team);
