@@ -17,6 +17,8 @@ class PasswordController extends Controller
             $node->setParent($parent);
         }
 
+        $node->setOwner($this->getUser());
+
         return $this->viewAction($request, $nodes, $node);
     }
 
@@ -36,7 +38,7 @@ class PasswordController extends Controller
                 $em->persist($node);
                 $em->flush();
 
-                //return $this->redirectToRoute('passvault_node_view', array('id' => $node->getId()));
+                return $this->redirectToRoute('passvault_node_view', array('id' => $node->getId()));
             }
         }
 

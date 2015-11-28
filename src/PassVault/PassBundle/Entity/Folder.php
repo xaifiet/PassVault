@@ -27,6 +27,11 @@ class Folder extends \PassVault\PassBundle\Entity\Node
         parent::__construct();
     }
 
+    public function getKey()
+    {
+        return $this->getParent()->getKey();
+    }
+
     /**
      * Set inherit
      *

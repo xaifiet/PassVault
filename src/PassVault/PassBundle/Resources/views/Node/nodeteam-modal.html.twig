@@ -15,7 +15,7 @@
                         <div class="form-group">
                             <label class="control-label required" for="team_name">Team</label>
                             <select name="team" class="form-control">
-                                {% for team in app.user.teams %}
+                                {% for team in app.user.assocTeams %}
                                     <option value="{{ team.team.id }}">{{ team.team.name }}</option>
                                 {% endfor %}
                             </select>

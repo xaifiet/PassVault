@@ -8,10 +8,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\DependencyInjection\Container;
 
 /**
- * Class OrganizationType
+ * Class VaultType
  * @package PassVault\PassBundle\Form\Type
  */
-class OrganizationType extends AbstractType
+class VaultType extends AbstractType
 {
 
     protected $container;
@@ -38,7 +38,7 @@ class OrganizationType extends AbstractType
 
         $securityChecker = $this->container->get('security.authorization_checker');
 
-        if ($securityChecker->isGranted('ROLE_ADMINISTRATOR', $options['data'])) {
+        if (is_null($options['data']->getId()) || $securityChecker->isGranted('ROLE_ADMINISTRATOR', $options['data'])) {
 
             // Adding the submit button
             $builder->add('submit', 'submit', array(
@@ -56,7 +56,7 @@ class OrganizationType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PassVault\PassBundle\Entity\Organization',
+            'data_class' => 'PassVault\PassBundle\Entity\Vault',
             'cascade_validation' => true
         ));
     }
@@ -74,6 +74,7 @@ class OrganizationType extends AbstractType
      */
     public function getName()
     {
-        return 'organization';
+        return 'vault';
     }
+
 }

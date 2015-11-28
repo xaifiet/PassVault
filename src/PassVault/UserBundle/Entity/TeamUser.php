@@ -22,7 +22,7 @@ class TeamUser
 
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="teams")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="assocTeams")
      * @ORM\JoinColumn(nullable=false)
      **/
     private $user;

@@ -17,6 +17,8 @@ class FolderController extends Controller
             $node->setParent($parent);
         }
 
+        $node->setOwner($this->getUser());
+
         return $this->viewAction($request, $nodes, $node);
     }
 

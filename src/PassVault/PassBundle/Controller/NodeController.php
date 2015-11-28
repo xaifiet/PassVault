@@ -12,9 +12,9 @@ class NodeController extends Controller
 {
 
     private $types = array(
-        'organization' => array(
-            'class' => 'PassVault\PassBundle\Entity\Organization',
-            'controller' => 'PassVaultPassBundle:Organization'
+        'vault' => array(
+            'class' => 'PassVault\PassBundle\Entity\Vault',
+            'controller' => 'PassVaultPassBundle:Vault'
         ),
         'folder' => array(
             'class' => 'PassVault\PassBundle\Entity\Folder',
@@ -84,6 +84,7 @@ class NodeController extends Controller
             'nodes' => $nodes,
             'parent' => $parent
         ));
+
     }
 
     public function viewAction(Request $request, $id = null)

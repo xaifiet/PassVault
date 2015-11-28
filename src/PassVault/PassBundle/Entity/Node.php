@@ -49,6 +49,12 @@ abstract class Node
     private $updated;
 
     /**
+     * @ORM\ManyToOne(targetEntity="\PassVault\UserBundle\Entity\User", inversedBy="nodes", cascade={"all"})
+     * @ORM\JoinColumn(nullable=false)
+     **/
+    private $owner;
+
+    /**
      * @ORM\OneToMany(targetEntity="nodeTeam", mappedBy="node", cascade={"all"}, orphanRemoval=true)
      **/
     private $teams;
@@ -224,6 +230,29 @@ abstract class Node
     public function getChildren()
     {
         return $this->children;
+    }
+
+    /**
+     * Get owner
+     *
+     * @return \PassVault\UserBundle\Entity\User
+     */
+    public function getOwner()
+    {
+        return $this->owner;
+    }
+
+    /**
+     * Set owner
+     *
+     * @param \PassVault\UserBundle\Entity\User $owner
+     * @return Node
+     */
+    public function setOwner(\PassVault\UserBundle\Entity\User $owner)
+    {
+        $this->owner = $owner;
+
+        return $this;
     }
 
     /**

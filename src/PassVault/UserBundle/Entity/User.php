@@ -50,14 +50,19 @@ class User extends BaseUser
     protected $lastname;
 
     /**
+     * @ORM\OneToMany(targetEntity="\PassVault\PassBundle\Entity\Node", mappedBy="owner", cascade={"all"})
+     **/
+    private $nodes;
+
+    /**
      * @ORM\OneToMany(targetEntity="TeamUser", mappedBy="user", cascade={"all"}, orphanRemoval=true)
      **/
-    private $teams;
+    private $assocTeams;
 
     /**
      * @ORM\OneToMany(targetEntity="\PassVault\PassBundle\Entity\NodeUser", mappedBy="user", cascade={"all"}, orphanRemoval=true)
      **/
-    private $nodes;
+    private $assocNodes;
 
 
     public function __construct()
@@ -147,49 +152,15 @@ class User extends BaseUser
         return $this->lastname;
     }
 
-    /**
-     * Add team
-     *
-     * @param \PassVault\UserBundle\Entity\TeamUser $team
-     *
-     * @return User
-     */
-    public function addTeam(\PassVault\UserBundle\Entity\TeamUser $team)
-    {
-        $this->teams[] = $team;
-
-        return $this;
-    }
-
-    /**
-     * Remove team
-     *
-     * @param \PassVault\UserBundle\Entity\TeamUser $team
-     */
-    public function removeTeam(\PassVault\UserBundle\Entity\TeamUser $team)
-    {
-        $this->teams->removeElement($team);
-    }
-
-    /**
-     * Get teams
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getTeams()
-    {
-        return $this->teams;
-    }
-
 
     /**
      * Add node
      *
-     * @param \PassVault\PassBundle\Entity\NodeUser $node
+     * @param \PassVault\PassBundle\Entity\Node $node
      *
      * @return User
      */
-    public function addNode(\PassVault\PassBundle\Entity\NodeUser $node)
+    public function addNode(\PassVault\PassBundle\Entity\Node $node)
     {
         $this->nodes[] = $node;
 
@@ -199,9 +170,9 @@ class User extends BaseUser
     /**
      * Remove node
      *
-     * @param \PassVault\PassBundle\Entity\NodeUser $node
+     * @param \PassVault\PassBundle\Entity\Node $node
      */
-    public function removeNode(\PassVault\PassBundle\Entity\NodeUser $node)
+    public function removeNode(\PassVault\PassBundle\Entity\Node $node)
     {
         $this->nodes->removeElement($node);
     }
@@ -214,5 +185,73 @@ class User extends BaseUser
     public function getNodes()
     {
         return $this->nodes;
+    }
+
+    /**
+     * Add assocTeam
+     *
+     * @param \PassVault\UserBundle\Entity\TeamUser $assocTeam
+     *
+     * @return User
+     */
+    public function addAssocTeam(\PassVault\UserBundle\Entity\TeamUser $assocTeam)
+    {
+        $this->assocTeams[] = $assocTeam;
+
+        return $this;
+    }
+
+    /**
+     * Remove assocTeam
+     *
+     * @param \PassVault\UserBundle\Entity\TeamUser $assocTeam
+     */
+    public function removeAssocTeam(\PassVault\UserBundle\Entity\TeamUser $assocTeam)
+    {
+        $this->assocTeams->removeElement($assocTeam);
+    }
+
+    /**
+     * Get assocTeams
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAssocTeams()
+    {
+        return $this->assocTeams;
+    }
+
+    /**
+     * Add assocNode
+     *
+     * @param \PassVault\PassBundle\Entity\NodeUser $assocNode
+     *
+     * @return User
+     */
+    public function addAsscNode(\PassVault\PassBundle\Entity\NodeUser $assocNode)
+    {
+        $this->assocNodes[] = $assocNode;
+
+        return $this;
+    }
+
+    /**
+     * Remove assocNode
+     *
+     * @param \PassVault\PassBundle\Entity\NodeUser $assocNode
+     */
+    public function removeAssocNode(\PassVault\PassBundle\Entity\NodeUser $assocNode)
+    {
+        $this->assocNodes->removeElement($assocNode);
+    }
+
+    /**
+     * Get asscNodes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAssocNodes()
+    {
+        return $this->assocNodes;
     }
 }

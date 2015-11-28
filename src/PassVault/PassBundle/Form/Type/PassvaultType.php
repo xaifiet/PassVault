@@ -47,7 +47,7 @@ class PassvaultType extends AbstractType
             'entity_label' => array('name'),
             'entity_repository' => 'PassVaultPassBundle:Node',
             'entity_classes' => array(
-                'PassVault\PassBundle\Entity\Organization',
+                'PassVault\PassBundle\Entity\Vault',
                 'PassVault\PassBundle\Entity\Folder',
             ),
             'entity_parent' => 'parent',

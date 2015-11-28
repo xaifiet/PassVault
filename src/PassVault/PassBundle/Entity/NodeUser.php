@@ -22,7 +22,7 @@ class NodeUser
 
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="\PassVault\UserBundle\Entity\User", inversedBy="nodes")
+     * @ORM\ManyToOne(targetEntity="\PassVault\UserBundle\Entity\User", inversedBy="assocNodes")
      * @ORM\JoinColumn(nullable=false)
      **/
     private $user;

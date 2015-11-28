@@ -57,6 +57,10 @@ class NodeVoter implements VoterInterface
             return self::ACCESS_GRANTED;
         }
 
+        if ($node->getOwner() == $user) {
+            return self::ACCESS_GRANTED;
+        }
+
         foreach ($node->getUsers() as $nodeUser) {
             if ($nodeUser->getUser() == $user
                 && $this->roles[$nodeUser->getRole()] >= $this->roles[$attributes[0]]) {
@@ -64,7 +68,7 @@ class NodeVoter implements VoterInterface
             }
         }
 
-        foreach ($user->getTeams() as $team) {
+        foreach ($user->getAssocTeams() as $team) {
             foreach ($node->getTeams() as $nodeTeam) {
                 if ($nodeTeam->getTeam() == $team->getTeam() &&
                     $this->roles[$nodeTeam->getRole()] >= $this->roles[$attributes[0]]) {

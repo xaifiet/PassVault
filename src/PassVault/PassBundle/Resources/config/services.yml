@@ -1,7 +1,7 @@
 services:
 
-    passvault.event_listener.password_event_listener:
-        class: PassVault\PassBundle\EventListener\PasswordEventListener
+    passvault.event_listener.vault_event_listener:
+        class: PassVault\PassBundle\EventListener\VaultEventListener
         arguments:
             - @service_container
         tags:
@@ -27,12 +27,12 @@ services:
         tags:
             - { name: form.type, alias: node }
 
-    passvault.form_type.organization_type:
-        class: PassVault\PassBundle\Form\Type\OrganizationType
+    passvault.form_type.vault_type:
+        class: PassVault\PassBundle\Form\Type\VaultType
         arguments:
             - @service_container
         tags:
-            - { name: form.type, alias: organization }
+            - { name: form.type, alias: vault }
 
     passvault.form_type.folder_type:
         class: PassVault\PassBundle\Form\Type\FolderType
