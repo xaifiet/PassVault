@@ -1,5 +1,13 @@
 services:
 
+    passvault.event_listener.password_event_listener:
+        class: PassVault\PassBundle\EventListener\PasswordEventListener
+        arguments:
+            - @service_container
+        tags:
+            - { name: doctrine.event_listener, event: postLoad }
+            - { name: doctrine.event_listener, event: prePersist }
+
     passvault.twig.class_extension:
         class: PassVault\PassBundle\Twig\ClassExtension
         tags:

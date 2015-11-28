@@ -28,12 +28,20 @@ class Password extends \PassVault\PassBundle\Entity\Node
      * @ORM\Column(type="string", length=100)
      * @Assert\NotBlank()
      */
+    private $keyFile;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank()
+     */
     private $password;
 
     /**
      * @ORM\Column(type="boolean")
      **/
     private $inherit = true;
+
+    private $hash;
 
     protected $icon = 'fa fa-key';
 
@@ -43,8 +51,15 @@ class Password extends \PassVault\PassBundle\Entity\Node
     public function __construct()
     {
         parent::__construct();
-    }
 
+        $this->keyFile = md5(rand().microtime());
+
+        $characters = 'abcdef0123456789';
+        $this->hash = '';
+        for ($i = 0; $i < 60; $i++) {
+            $this->hash .= $characters[rand(0, strlen($characters) - 1)];
+        }
+    }
 
     /**
      * Set passType
@@ -127,7 +142,13 @@ class Password extends \PassVault\PassBundle\Entity\Node
      */
     public function setPassword($password)
     {
-        $this->password = $password;
+        $key = sha1($this->hash);
+        $data = '';
+        for ($i = 0; $i<strlen($password); $i++) {
+            $kc = substr($key, ($i%strlen($key)) - 1, 1);
+            $data .= chr(ord($password{$i})+ord($kc));
+        }
+        $this->password = base64_encode($data);
 
         return $this;
     }
@@ -139,7 +160,39 @@ class Password extends \PassVault\PassBundle\Entity\Node
      */
     public function getPassword()
     {
-        return $this->password;
+        $key = sha1($this->hash);
+        $password = '';
+        $hash = base64_decode($this->password);
+        for ($i = 0; $i<strlen($hash); $i++) {
+            $kc = substr($key, ($i%strlen($key)) - 1, 1);
+            $password .= chr(ord($hash{$i})-ord($kc));
+        }
+
+        return $password;
+    }
+
+    /**
+     * Get keyFile
+     *
+     * @return string
+     */
+    public function getKeyFile()
+    {
+        return $this->keyFile;
+    }
+
+    /**
+     * Set keyFile
+     *
+     * @param string $keyFile
+     *
+     * @return Password
+     */
+    public function setKeyFile($keyFile)
+    {
+        $this->keyFile = $keyFile;
+
+        return $this;
     }
 
     /**
@@ -164,5 +217,29 @@ class Password extends \PassVault\PassBundle\Entity\Node
     public function getInherit()
     {
         return $this->inherit;
+    }
+
+    /**
+     * Get hash
+     *
+     * @return string
+     */
+    public function getHash()
+    {
+        return $this->hash;
+    }
+
+    /**
+     * Set hash
+     *
+     * @param string $hash
+     *
+     * @return Password
+     */
+    public function setHash($hash)
+    {
+        $this->hash = $hash;
+
+        return $hash;
     }
 }

@@ -32,7 +32,7 @@
                                 </thead>
                                 <tbody>
                                 {% for treenode in nodes %}
-                                    <tr class="treegrid-{{ treenode.id }}{% if treenode.parent != null %} treegrid-parent-{{ treenode.parent.id }}{% endif %}{% if activeNode is defined and treenode == activeNode %} tree-activate{% endif %}">
+                                    <tr class="treegrid-{{ treenode.id }}{% if treenode.parent != null %} treegrid-parent-{{ treenode.parent.id }}{% endif %}{% if activeNode is defined and treenode == activeNode %} tree-activate{% endif %}" style="display: none;">
                                         <td>
                                             {% if treenode.icon is defined %}
                                                 <i class="{{ treenode.icon }}"></i>
