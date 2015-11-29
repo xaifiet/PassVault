@@ -111,11 +111,16 @@ assetic:
                 - '%kernel.root_dir%/../vendor/almasaeed2010/adminlte/dist/css/AdminLTE.css'
                 - '%kernel.root_dir%/../vendor/almasaeed2010/adminlte/dist/css/skins/skin-blue.css'
 
+        icheck_js:
+            inputs:
+                - '%kernel.root_dir%/../vendor/almasaeed2010/adminlte/plugins/iCheck/icheck.min.js'
+        icheck_css:
+            inputs:
+                - '%kernel.root_dir%/../vendor/almasaeed2010/adminlte/plugins/iCheck/minimal/blue.css'
+
         datatables_js:
             inputs:
                 - '%kernel.root_dir%/../vendor/almasaeed2010/adminlte/plugins/datatables/jquery.dataTables.min.js'
-        datatables_js2:
-            inputs:
                 - '%kernel.root_dir%/../vendor/almasaeed2010/adminlte/plugins/datatables/dataTables.bootstrap.min.js'
         datatables_css:
             inputs:

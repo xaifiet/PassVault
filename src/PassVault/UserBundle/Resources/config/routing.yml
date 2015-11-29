@@ -1,3 +1,6 @@
+#
+# User Login
+#
 passvault_user_login:
     path: /sign/in
     defaults:
@@ -8,6 +11,25 @@ passvault_user_check:
 
 passvault_user_logout:
     path: /sign/out
+
+
+#
+# User Register
+#
+
+passvault_user_register:
+    path: /register
+    defaults:
+        _controller: PassVaultUserBundle:User:register
+
+passvault_user_confirmation:
+    path: /confirmation/{token}
+    defaults:
+        _controller: PassVaultUserBundle:User:confirmation
+
+#
+# Team
+#
 
 passvault_team_index:
     path: /team

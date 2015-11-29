@@ -34,6 +34,8 @@ security:
 
     access_control:
         - { path: ^/sign/in, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/confirmation, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/css, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/js, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/fonts, role: IS_AUTHENTICATED_ANONYMOUSLY }
