@@ -14,6 +14,11 @@ passvault_node_view:
     path:     /node/{id}/view
     defaults: { _controller: PassVaultPassBundle:Node:view }
 
+passvault_node_search:
+    path:     /node/search
+    defaults: { _controller: PassVaultPassBundle:Node:search }
+
+
 passvault_node_add:
     path:     /node/add/vault
     defaults:

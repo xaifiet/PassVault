@@ -93,24 +93,39 @@ class NodeController extends Controller
 
         $nodes = $this->getNodes();
 
-        if (is_null($id)) {
-            $node = null;
-            $nodeController = null;
-        } else {
+        $node = null;
+        $nodeController = null;
+        $error = array();
+        if (!is_null($id)) {
             $node = $this->getDoctrine()->getRepository('PassVaultPassBundle:Node')->find($id);
-            $this->denyAccessUnlessGranted('ROLE_READER', $node);
-
-            $nodeController = null;
-            foreach ($this->types as $type) {
-                if ($type['class'] == get_class($node)) {
-                    $nodeController = $type['controller'] . ':view';
+            if (is_null($node)) {
+                $error = array(
+                    'code' => 404,
+                    'title' => 'This node does not exist',
+                    'text' => 'Try to access nodes by the left menu or research'
+                );
+            } else if ($this->isGranted('ROLE_READER', $node)) {
+                $nodeController = null;
+                foreach ($this->types as $type) {
+                    if ($type['class'] == get_class($node)) {
+                        $nodeController = $type['controller'] . ':view';
+                    }
                 }
+            } else {
+                $node = null;
+                $error = array(
+                    'code' => 401,
+                    'title' => 'You are not authorize to see this node',
+                    'text' => 'Check your right'
+                );
             }
+
         }
 
         if (is_null($nodeController)) {
             return $this->render('PassVaultPassBundle:Node:index.html.twig', array(
-                'nodes' => $nodes
+                'nodes' => $nodes,
+                'error' => $error
             ));
         }
 
@@ -169,6 +184,16 @@ class NodeController extends Controller
         $em->flush();
 
         return $this->redirectToRoute('passvault_node_view', array('id' => $id));
+    }
+
+    public function searchAction(Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $node = $this->getDoctrine()->getRepository('PassVaultPassBundle:Password')->search($request->get('search'));
+
+        var_dump(count($node));
+
     }
 
 }

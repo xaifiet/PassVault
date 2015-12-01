@@ -1,6 +1,9 @@
 {% extends 'PassVaultPassBundle:Node:index.html.twig' %}
 
+{% form_theme form.link 'PassVaultPassBundle:Form:link.html.twig' %}
+{% form_theme form.account 'PassVaultPassBundle:Form:account.html.twig' %}
 {% form_theme form.password 'PassVaultPassBundle:Form:password.html.twig' %}
+
 
 {% block node %}
     {{ form_start(form) }}

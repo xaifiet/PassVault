@@ -8,6 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity
  * @ORM\Table(name="vp_passwords")
+ * @ORM\Entity(repositoryClass="\PassVault\PassBundle\Repository\PasswordRepository")
  */
 class Password extends \PassVault\PassBundle\Entity\Node
 {

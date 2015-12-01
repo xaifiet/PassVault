@@ -17,12 +17,17 @@ treegrid = function(elem) {
 };
 
 clipboard = function(event, elem, params) {
-    console.log('clipboard');
     var input = $(params[0]);
+
+    if ($(input).val().length > 0) {
+        var value = $(input).val()
+    } else {
+        var value = $(input).text();
+    }
 
     event.preventDefault();
 
-    var cont = $(input).val(), // Or use a custom source Element
+    var cont = value, // Or use a custom source Element
         $txa = $("<textarea />",{val:cont,css:{position:"fixed"}}).appendTo("body").select(),
         $msg = $("#clip-popup");
 

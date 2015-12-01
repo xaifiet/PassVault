@@ -2,6 +2,10 @@
     border-left: 3px solid #3c8dbc !important;
 }
 
-input.passvault {
+.passvault {
     -webkit-text-security: disc;
+}
+
+.passvault > * {
+    -webkit-text-security: none;
 }

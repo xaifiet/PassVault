@@ -1,0 +1,10 @@
+{% block text_widget %}
+    <div class="input-group input-group-sm">
+        {{ block('form_widget_simple') }}
+        <span class="input-group-btn">
+            <a href="{{ form.vars.value }}" class="btn btn-default btn-flat" target="_blank">
+                <i class="fa fa-link"> Go to link</i>
+            </a>
+        </span>
+    </div>
+{% endblock %}

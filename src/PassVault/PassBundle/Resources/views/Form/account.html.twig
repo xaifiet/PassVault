@@ -1,0 +1,8 @@
+{% block text_widget %}
+    <div class="input-group input-group-sm">
+        {{ block('form_widget_simple') }}
+        <span class="input-group-btn">
+            <a href="#" class="btn btn-default btn-flat" data-bind="click{clipboard(#{{ form.vars.id }})}"><i class="fa fa-clipboard"> Copy to clipboard</i></a>
+        </span>
+    </div>
+{% endblock %}
