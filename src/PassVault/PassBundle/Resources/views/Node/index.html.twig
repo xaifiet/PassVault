@@ -20,6 +20,7 @@
                 <h1>Passwords</h1>
             </section>
             <section class="content">
+                {% include 'PassVaultPassBundle:Node:searchform.html.twig' %}
                 <div class="col-xs-4">
                     <a href="{{ path('passvault_node_add', {'type': 'vault'}) }}" class="btn btn-primary btn-block margin-bottom">Create a vault</a>
                     <div class="box box-primary">

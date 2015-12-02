@@ -188,11 +188,17 @@ class NodeController extends Controller
 
     public function searchAction(Request $request) {
 
-        $em = $this->getDoctrine()->getManager();
+        $text = trim($request->get('text'));
 
-        $node = $this->getDoctrine()->getRepository('PassVaultPassBundle:Password')->search($request->get('search'));
+        if (empty($text)) {
+            $nodes = array();
+        } else {
+            $nodes = $this->getDoctrine()->getRepository('PassVaultPassBundle:Password')->search($request->get('text'));
+        }
 
-        var_dump(count($node));
+        return $this->render('PassVaultPassBundle:Node:search.html.twig', array(
+            'nodes' => $nodes
+        ));
 
     }
 

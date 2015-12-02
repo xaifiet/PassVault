@@ -1,0 +1,16 @@
+{% extends ':Layout:base.html.twig' %}
+
+{% block bodyclass %}hold-transition login-page{% endblock %}
+
+{% block body %}
+    <div class="register-box">
+        <div class="register-logo">
+            Pass<b>Vault</b>
+        </div>
+        <div class="register-box-body">
+            <p class="login-box-msg">Registration done</p>
+            <p>You will receive an email with your confirmation link in few minutes.</p>
+            <a href="{{ path('passvault_user_login') }}">Go to login page</a>
+        </div>
+    </div>
+{% endblock %}

@@ -19,6 +19,7 @@
             <excludedPath path="/LightCMS/web/bundles" />
             <excludedPath local="true" path="$PROJECT_DIR$/bin" />
             <excludedPath path="/PassVault/bin" />
+            <excludedPath path="/PassVault/var" />
           </excludedPaths>
         </serverdata>
       </paths>

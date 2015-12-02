@@ -1,8 +1,6 @@
 {% extends ':Layout:base.html.twig' %}
 
-{% block bodyclass %}
-    hold-transition login-page
-{% endblock %}
+{% block bodyclass %}hold-transition login-page{% endblock %}
 
 {% block body %}
     <div class="login-box">
@@ -22,8 +20,10 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-8">
-                        <a href="#">I forgot my password</a><br>
-                        <a href="{{ path('passvault_user_register') }}" class="text-center">Register a new membership</a>
+                        <a href="{{ path('passvault_user_forgotpassword') }}">I forgot my password</a><br>
+                        {% if allow_register %}
+                            <a href="{{ path('passvault_user_register') }}" class="text-center">Register a new membership</a>
+                        {% endif %}
                     </div>
                     <div class="col-xs-4 pull-right">
                         <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>

@@ -39,6 +39,8 @@ twig:
         - 'bootstrap_3_layout.html.twig'
         - ':Form:theme.html.twig'
         - 'EntityModalBundle:EntityModal:form_theme.html.twig'
+    globals:
+        allow_register: %allow_register%
 
 assetic:
     debug:          "%kernel.debug%"

@@ -1,0 +1,73 @@
+{% extends ':Layout:base.html.twig' %}
+
+{% set module = 'search' %}
+
+{% block body %}
+    <div class="wrapper">
+        {% include ':Layout:header.html.twig' %}
+        {% include ':Layout:sidebar.html.twig' %}
+        <div class="content-wrapper">
+            <section class="content-header">
+                <h1>Search</h1>
+            </section>
+            <section class="content">
+
+                {% include 'PassVaultPassBundle:Node:searchform.html.twig' %}
+                <div class="col-xs-12">
+                    <div class="box box-primary">
+                        <div class="box-body table-responsive no-padding">
+                            <table id="search" class="table table-bordered table-hover dataTable" role="grid" data-bind="ready[datatables()]">
+                                <thead>
+                                    <tr role="row">
+                                        <th class="sorting_asc" tabindex="0" aria-controls="search" rowspan="1" colspan="1" aria-sort="ascending">Name</th>
+                                        <th class="sorting" tabindex="0" aria-controls="search" rowspan="1" colspan="1">Name</th>
+                                        <th class="sorting" tabindex="0" aria-controls="search" rowspan="1" colspan="1">Link</th>
+                                        <th class="sorting" tabindex="0" aria-controls="search" rowspan="1" colspan="1">Username</th>
+                                        <th class="sorting" tabindex="0" aria-controls="search" rowspan="1" colspan="1">Password</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for node in nodes %}
+                                    {% if is_granted('ROLE_READER', node) %}
+                                        <tr>
+                                            <td><a href="{{ path('passvault_node_view', {'id': node.parent.id}) }}">{{ node.parent.name }}</a></td>
+                                            <td><a href="{{ path('passvault_node_view', {'id': node.id}) }}">{{ node.name }}</a></td>
+                                            <td>
+                                                <span>{{ node.link }}</span>
+                                                <div class="pull-right">
+                                                    <a href="{{ node.link }}" class="btn btn-default btn-flat btn-xs" target="_blank">
+                                                        <i class="fa fa-fw fa-link"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <span id="{{ node.id }}-account">{{ node.account }}</span>
+                                                <div class="pull-right">
+                                                    <a href="#" class="btn btn-default btn-flat btn-xs" data-bind="click{clipboard(#{{ node.id }}-account)}">
+                                                        <i class="fa fa-fw fa-clipboard"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <span id="{{ node.id }}-password" class="passvault">{{ node.password }}</span>
+                                                <div class="pull-right">
+                                                    <a href="#" class="btn btn-default btn-flat btn-xs" data-bind="click{clipboard(#{{ node.id }}-password)}">
+                                                        <i class="fa fa-fw fa-clipboard"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-default btn-flat btn-xs" data-bind="click{toggleClass(#{{ node.id }}-password,passvault)}">
+                                                        <i class="fa fa-fw fa-eye"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock %}

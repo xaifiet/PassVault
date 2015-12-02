@@ -19,3 +19,7 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     directory_var: '%kernel.root_dir%/../var/keys'
+
+    mail_contact: contact@passvault.local
+
+    allow_register: true

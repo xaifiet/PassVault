@@ -42,10 +42,14 @@ toggleClass = function(event, elem, params) {
 };
 
 datatables = function(event, elem, params) {
+
+    var pageLength = params[0] == undefined ? 10 : params[0];
+
     $(elem).DataTable({
         'lengthChange': false,
-        'pageLength': 5,
-        'searching': false
+        'pageLength': pageLength,
+        'searching': false,
+        'info': false
     });
 };
 

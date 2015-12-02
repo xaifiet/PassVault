@@ -1,0 +1,5 @@
+<p>Welcome {{ user.firstname }} {{ user.lastname }},</p>
+
+<p>You registered on PassVault, please confirm on this <a href="{{ url('passvault_user_confirmation', {'token': user.confirmationToken}) }}">link</a>.</p>
+
+<p>PassVault</p>

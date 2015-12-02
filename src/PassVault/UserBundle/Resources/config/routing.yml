@@ -27,6 +27,11 @@ passvault_user_confirmation:
     defaults:
         _controller: PassVaultUserBundle:User:confirmation
 
+passvault_user_forgotpassword:
+    path: /forgot/password
+    defaults:
+        _controller: PassVaultUserBundle:User:forgotPassword
+
 #
 # Team
 #
