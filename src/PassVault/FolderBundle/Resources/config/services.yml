@@ -1,0 +1,4 @@
+services:
+#    pass_vault_folder.example:
+#        class: PassVault\FolderBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

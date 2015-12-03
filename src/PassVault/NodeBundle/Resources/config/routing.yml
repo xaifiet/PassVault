@@ -1,0 +1,3 @@
+pass_vault_node_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: PassVaultNodeBundle:Default:index }

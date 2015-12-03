@@ -1,25 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="Server" autoUploadExternalChanges="true">
+  <component name="PublishConfigData" autoUpload="Always" serverName="ServerWeb" autoUploadExternalChanges="true">
     <serverData>
-      <paths name="Server">
+      <paths name="ServerWeb">
         <serverdata>
           <mappings>
-            <mapping deploy="/PassVault" local="$PROJECT_DIR$" web="/PassVault" />
+            <mapping deploy="PassVault" local="$PROJECT_DIR$" web="/PassVault" />
           </mappings>
           <excludedPaths>
-            <excludedPath path="/PassVault/app/cache" />
-            <excludedPath path="/PassVault/app/logs" />
-            <excludedPath local="true" path="$PROJECT_DIR$/vendor" />
-            <excludedPath path="/PassVault/vendor" />
-            <excludedPath path="/PassVault/web/assetic" />
-            <excludedPath path="/PassVault/web/css" />
-            <excludedPath path="/PassVault/web/fonts" />
-            <excludedPath path="/PassVault/web/js" />
-            <excludedPath path="/LightCMS/web/bundles" />
-            <excludedPath local="true" path="$PROJECT_DIR$/bin" />
-            <excludedPath path="/PassVault/bin" />
-            <excludedPath path="/PassVault/var" />
+            <excludedPath path="PassVault/app/cache" />
+            <excludedPath path="PassVault/app/logs" />
+            <excludedPath path="PassVault/var" />
+            <excludedPath path="PassVault/vendor" />
+            <excludedPath path="PassVault/web/assetic" />
+            <excludedPath path="PassVault/web/bundles" />
+            <excludedPath path="PassVault/web/css" />
+            <excludedPath path="PassVault/web/fonts" />
+            <excludedPath path="PassVault/web/js" />
           </excludedPaths>
         </serverdata>
       </paths>

@@ -1,0 +1,3 @@
+pass_vault_password_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: PassVaultPasswordBundle:Default:index }

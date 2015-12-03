@@ -22,6 +22,11 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new EntityModalBundle\EntityModalBundle(),
             new EntityHiddenBundle\EntityHiddenBundle(),
+            new PassVault\OrganizationBundle\PassVaultOrganizationBundle(),
+            new PassVault\TeamBundle\PassVaultTeamBundle(),
+            new PassVault\FolderBundle\PassVaultFolderBundle(),
+            new PassVault\PasswordBundle\PassVaultPasswordBundle(),
+            new PassVault\NodeBundle\PassVaultNodeBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

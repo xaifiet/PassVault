@@ -1,0 +1,3 @@
+pass_vault_team_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: PassVaultTeamBundle:Default:index }

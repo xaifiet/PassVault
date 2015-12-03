@@ -1,6 +1,26 @@
-pass_vault_pass:
-    resource: "@PassVaultPassBundle/Resources/config/routing.yml"
+pass_vault_node:
+    resource: "@PassVaultNodeBundle/Resources/config/routing.yml"
     prefix:   /
+
+pass_vault_password:
+    resource: "@PassVaultPasswordBundle/Resources/config/routing.yml"
+    prefix:   /
+
+pass_vault_folder:
+    resource: "@PassVaultFolderBundle/Resources/config/routing.yml"
+    prefix:   /
+
+pass_vault_team:
+    resource: "@PassVaultTeamBundle/Resources/config/routing.yml"
+    prefix:   /
+
+pass_vault_organization:
+    resource: "@PassVaultOrganizationBundle/Resources/config/routing.yml"
+    prefix:   /
+
+#pass_vault_pass:
+#    resource: "@PassVaultPassBundle/Resources/config/routing.yml"
+#    prefix:   /
 
 pass_vault_user:
     resource: "@PassVaultUserBundle/Resources/config/routing.yml"

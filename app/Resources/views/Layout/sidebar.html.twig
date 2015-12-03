@@ -3,21 +3,27 @@
         <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li class="treeview {% if module is defined and module == 'search' %}active{% endif %}">
-                <a href="{{ path('passvault_node_search') }}">
+                <a href="#">
                     <i class="fa fa-search"></i>
                     <span>Search</span>
                 </a>
             </li>
-            <li class="treeview {% if module is defined and module == 'password' %}active{% endif %}">
-                <a href="{{ path('passvault_homepage') }}">
+            <li class="treeview {% if module is defined and module == 'vault' %}active{% endif %}">
+                <a href="#">
                     <i class="fa fa-key"></i>
-                    <span>Passwords</span>
+                    <span>Vault</span>
                 </a>
             </li>
-            <li class="treeview {% if module is defined and module == 'team' %}active{% endif %}">
-                <a href="{{ path('passvault_team_index') }}">
+            <li class="treeview {% if module is defined and module == 'teams' %}active{% endif %}">
+                <a href="#">
                     <i class="fa fa-users"></i>
                     <span>Teams</span>
+                </a>
+            </li>
+            <li class="treeview {% if module is defined and module == 'users' %}active{% endif %}">
+                <a href="#">
+                    <i class="fa fa-user"></i>
+                    <span>Users</span>
                 </a>
             </li>
         </ul>

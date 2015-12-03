@@ -1,0 +1,11 @@
+pass_vault_organization_home:
+    path: /
+    defaults:
+        _controller: PassVaultOrganizationBundle:Organization:index
+
+
+
+
+pass_vault_organization_settings:
+    path:     /{id}/view/
+    defaults: { _controller: PassVaultOrganizationBundle:Organization:index }
